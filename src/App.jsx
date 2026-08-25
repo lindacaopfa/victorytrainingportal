@@ -716,6 +716,12 @@ function PhaseContent({ phase, progress, fullProgress, onUpdate, videos, files, 
                   <>
                     <video controls style={{ width: "100%", borderRadius: 8, maxHeight: 210, background: "#000", display: "block" }} src={videos[step.videoKey].url} />
                     {!done && <button onClick={() => toggle(step.id)} style={{ marginTop: 8, width: "100%", padding: "9px 0", borderRadius: 8, border: "none", background: phase.color, color: "#000", fontWeight: 700, fontSize: "var(--fs-13)", cursor: "pointer" }}>Mark as Watched ✓</button>}
+                    {isAdmin && (
+                      <label style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 6, background: "rgba(255,255,255,0.04)", border: `1px solid ${phase.color}44`, borderRadius: 8, padding: 8, cursor: "pointer", color: phase.color, fontSize: "var(--fs-11-5)", fontWeight: 600, marginTop: 8 }}>
+                        {Ic.upload(12, phase.color)} Replace video
+                        <input type="file" accept="video/*" style={{ display: "none" }} onChange={e => { const f = e.target.files[0]; if (f) onUploadVideo(step.videoKey, f); }} />
+                      </label>
+                    )}
                   </>
                 ) : (
                   <>
@@ -751,6 +757,12 @@ function PhaseContent({ phase, progress, fullProgress, onUpdate, videos, files, 
                       <div style={{ marginBottom: 8 }}>
                         <FilePreview file={files[step.fileKey]} />
                       </div>
+                    )}
+                    {canUploadFiles && (
+                      <label style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 6, background: "rgba(255,255,255,0.04)", border: `1px solid ${phase.color}44`, borderRadius: 8, padding: 8, cursor: "pointer", color: phase.color, fontSize: "var(--fs-11-5)", fontWeight: 600, marginBottom: 8 }}>
+                        {Ic.upload(12, phase.color)} Replace file
+                        <input type="file" accept=".pdf,image/*,.doc,.docx" style={{ display: "none" }} onChange={e => { const f = e.target.files[0]; if (f) onUploadFile(step.fileKey, f); }} />
+                      </label>
                     )}
                   </>
                 ) : (
