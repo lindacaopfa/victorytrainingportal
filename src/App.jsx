@@ -133,9 +133,10 @@ const PHASES = [
       { id: "t2_fortunelist", label: "Victory Fortune List Workbook", type: "check" },
       { id: "t2_reftraining_header", type: "header", label: "Reference Call Training" },
       { id: "t2_scriptsfile", label: "Scripts and Memory Jogger", type: "file", fileKey: "t2_scripts_file" },
-      { id: "t2_refcall1", label: "Booked Reference Call 1", type: "calendly", calendlyKey: "t2_refcall1_cft" },
-      { id: "t2_refcall2", label: "Booked Reference Call 2", type: "calendly", calendlyKey: "t2_refcall2_cft" },
-      { id: "t2_refcall3", label: "Booked Reference Call 3", type: "calendly", calendlyKey: "t2_refcall3_cft" },
+      { id: "t2_recap2_header", type: "header", label: "Recap — Minimum 3 Reference or Field Calls" },
+      { id: "t2_refcall1", label: "Reference/Field Call 1", type: "sales_field", calendlyKey: "t2_refcall1_cft" },
+      { id: "t2_refcall2", label: "Reference/Field Call 2", type: "sales_field", calendlyKey: "t2_refcall2_cft" },
+      { id: "t2_refcall3", label: "Reference/Field Call 3", type: "sales_field", calendlyKey: "t2_refcall3_cft" },
     ],
   },
   {
