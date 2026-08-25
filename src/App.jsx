@@ -1202,7 +1202,7 @@ function AgentPortal({ agent, videos, files, links, calendlyLinks, isAdmin, isTr
 }
 
 // ─── ADMIN DASHBOARD ──────────────────────────────────────────────────────────
-function AdminDashboard({ agents, trainers, onSelectAgent, onAddAgent, onDeleteAgent, isTrainerView, trainerName, adminName }) {
+function AdminDashboard({ agents, trainers, onSelectAgent, onAddAgent, onDeleteAgent, isTrainerView, trainerName, adminName, onOpenDocuments }) {
   const [search, setSearch] = useState("");
   const [filterStatus, setFilterStatus] = useState("all");
   const [filterTrainer, setFilterTrainer] = useState("all");
@@ -1296,6 +1296,9 @@ function AdminDashboard({ agents, trainers, onSelectAgent, onAddAgent, onDeleteA
         </select>
         <button onClick={() => setShowAdd(s => !s)} style={{ display: "flex", alignItems: "center", gap: 5, background: "#D4AF37", color: "#000", border: "none", borderRadius: 10, padding: "8px 14px", fontWeight: 700, cursor: "pointer", fontSize: "var(--fs-13)", flexShrink: 0 }}>
           {Ic.plus(14, "#000")} Add Agent
+        </button>
+        <button onClick={onOpenDocuments} style={{ display: "flex", alignItems: "center", gap: 5, background: "rgba(255,255,255,0.07)", color: "#fff", border: "1px solid rgba(255,255,255,0.12)", borderRadius: 10, padding: "8px 14px", fontWeight: 700, cursor: "pointer", fontSize: "var(--fs-13)", flexShrink: 0 }}>
+          📁 Documents & Resources
         </button>
       </div>
 
@@ -1396,6 +1399,7 @@ export default function App() {
   const [links, setLinks] = useState({});
   const [calendlyLinks, setCalendlyLinks] = useState({});
   const [selectedAgent, setSelectedAgent] = useState(null);
+  const [showDocsHub, setShowDocsHub] = useState(false);
   const [loginMode, setLoginMode] = useState("admin");
   const [adminName, setAdminName] = useState("");
   const [pin, setPin] = useState("");
@@ -1595,6 +1599,15 @@ export default function App() {
     </div>
   );
 
+  if ((view === "admin" || view === "trainer") && showDocsHub) return shell(
+    <div style={{ paddingTop: 18 }}>
+      <div style={{ padding: "0 14px", marginBottom: 4 }}>
+        <button onClick={() => setShowDocsHub(false)} style={{ background: "rgba(255,255,255,0.07)", border: "none", color: "#fff", borderRadius: 8, padding: "7px 12px", cursor: "pointer", fontSize: 12 }}>← Back</button>
+      </div>
+      <DocumentsView files={files} links={links} isAdmin={true} onUploadFile={(k, f) => persistFile(k, f)} onUpdateLink={(k, u) => persistLink(k, u)} />
+    </div>
+  );
+
   if ((view === "admin" || view === "trainer") && !selectedAgent) return shell(
     <div style={{ paddingTop: 18 }}>
       <AdminDashboard
@@ -1606,6 +1619,7 @@ export default function App() {
         isTrainerView={view === "trainer"}
         trainerName={currentTrainer}
         adminName={currentAdmin}
+        onOpenDocuments={() => setShowDocsHub(true)}
       />
     </div>
   );
