@@ -211,6 +211,67 @@ const DOCS = [
   { id: "doc_carrier_comparison", type: "PDF", title: "2026 Living Benefits Lineup — Carrier Comparison", desc: "How National Life Group's Accelerated Benefit Riders compare with ten other carriers — triggers, maximum acceleration, benefit type and payment method.", tags: ["AGENT USE ONLY"], section: "bonus" },
 ];
 
+const RESPONSIVE_CSS = `
+  :root {
+  --fs-9: 9.0px;
+  --fs-9-5: 9.5px;
+  --fs-10: 10.0px;
+  --fs-10-5: 10.5px;
+  --fs-11: 11.0px;
+  --fs-11-5: 11.5px;
+  --fs-12: 12.0px;
+  --fs-12-5: 12.5px;
+  --fs-13: 13.0px;
+  --fs-13-5: 13.5px;
+  --fs-14: 14.0px;
+  --fs-16: 16.0px;
+  --fs-17: 17.0px;
+  --fs-20: 20.0px;
+  --fs-21: 21.0px;
+  --fs-22: 22.0px;
+  --fs-26: 26.0px;
+  --fs-34: 34.0px;
+  --fs-36: 36.0px;
+  --fs-42: 42.0px;
+  --fs-46: 46.0px;
+  --mw-440: 440px;
+  --mw-580: 580px;
+  --mw-620: 620px;
+  --mw-640: 640px;
+  --mw-820: 820px;
+  }
+  @media (min-width: 900px) {
+    :root {
+    --fs-9: 11.5px;
+    --fs-9-5: 12.0px;
+    --fs-10: 13.0px;
+    --fs-10-5: 13.5px;
+    --fs-11: 14.0px;
+    --fs-11-5: 14.5px;
+    --fs-12: 15.5px;
+    --fs-12-5: 16.0px;
+    --fs-13: 16.5px;
+    --fs-13-5: 17.5px;
+    --fs-14: 18.0px;
+    --fs-16: 20.5px;
+    --fs-17: 22.0px;
+    --fs-20: 25.5px;
+    --fs-21: 27.0px;
+    --fs-22: 28.0px;
+    --fs-26: 33.5px;
+    --fs-34: 43.5px;
+    --fs-36: 46.0px;
+    --fs-42: 54.0px;
+    --fs-46: 59.0px;
+    --mw-440: 660px;
+    --mw-580: 870px;
+    --mw-620: 930px;
+    --mw-640: 960px;
+    --mw-820: 1230px;
+    }
+  }
+`;
+
 const ADMINS = [
   { name: "Linda Cao", pin: "victory2026" },
 ];
@@ -317,8 +378,8 @@ function Countdown({ startDate }) {
   return (
     <div style={{ background: "rgba(255,255,255,0.04)", borderRadius: 10, padding: "10px 14px", border: `1px solid ${sc}33` }}>
       <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 6 }}>
-        <span style={{ fontSize: 11, color: "rgba(255,255,255,0.4)", textTransform: "uppercase", letterSpacing: 1 }}>30-Day Fast Track</span>
-        <span style={{ fontSize: 12, fontWeight: 800, color: sc }}>{daysLeft !== null ? `${daysLeft} days left` : "No start date"}</span>
+        <span style={{ fontSize: "var(--fs-11)", color: "rgba(255,255,255,0.4)", textTransform: "uppercase", letterSpacing: 1 }}>30-Day Fast Track</span>
+        <span style={{ fontSize: "var(--fs-12)", fontWeight: 800, color: sc }}>{daysLeft !== null ? `${daysLeft} days left` : "No start date"}</span>
       </div>
       <Bar pct={pct} color={sc} h={5} />
     </div>
@@ -344,11 +405,11 @@ function LinkField({ value, onSave, placeholder, color = "#3B82F6" }) {
         value={val}
         onChange={e => { setVal(e.target.value); setJustSaved(false); }}
         placeholder={placeholder}
-        style={{ flex: 1, background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 7, padding: "6px 10px", color: "#fff", fontSize: 11.5, boxSizing: "border-box" }}
+        style={{ flex: 1, background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 7, padding: "6px 10px", color: "#fff", fontSize: "var(--fs-11-5)", boxSizing: "border-box" }}
       />
       <button
         onClick={() => { onSave(val); setJustSaved(true); }}
-        style={{ background: justSaved ? "#10B981" : color, border: "none", borderRadius: 7, padding: "6px 12px", color: "#fff", fontSize: 11.5, fontWeight: 700, cursor: "pointer", flexShrink: 0 }}
+        style={{ background: justSaved ? "#10B981" : color, border: "none", borderRadius: 7, padding: "6px 12px", color: "#fff", fontSize: "var(--fs-11-5)", fontWeight: 700, cursor: "pointer", flexShrink: 0 }}
       >
         {justSaved ? "Saved ✓" : "Save"}
       </button>
@@ -365,7 +426,7 @@ function FilePreview({ file }) {
   if (isImage) return <img src={file.url} alt={file.name} style={{ width: "100%", borderRadius: 8, display: "block" }} />;
   if (isPdf) return <iframe src={file.url} title={file.name} style={{ width: "100%", height: 420, border: "none", borderRadius: 8, background: "#fff" }} />;
   return (
-    <div style={{ background: "rgba(255,255,255,0.04)", borderRadius: 8, padding: 12, color: "rgba(255,255,255,0.4)", fontSize: 11.5 }}>
+    <div style={{ background: "rgba(255,255,255,0.04)", borderRadius: 8, padding: 12, color: "rgba(255,255,255,0.4)", fontSize: "var(--fs-11-5)" }}>
       Preview isn't available for this file type ({file.name}), but you can{" "}
       <a href={file.url} target="_blank" rel="noopener noreferrer" style={{ color: "#3B82F6" }}>open it directly</a>.
     </div>
@@ -375,16 +436,16 @@ function FilePreview({ file }) {
 // ─── WELCOME PHASE ────────────────────────────────────────────────────────────
 function WelcomePhase({ agent, onComplete }) {
   return (
-    <div style={{ maxWidth: 580, margin: "0 auto", padding: "0 16px 40px" }}>
+    <div style={{ maxWidth: "var(--mw-580)", margin: "0 auto", padding: "0 16px 40px" }}>
       <div style={{ background: "linear-gradient(135deg, #1a1400, #2d2000)", borderRadius: 20, padding: 28, border: "1px solid #D4AF3744", marginBottom: 14 }}>
-        <div style={{ fontSize: 42, textAlign: "center", marginBottom: 14 }}>🏆</div>
-        <h2 style={{ color: "#D4AF37", fontSize: 21, fontWeight: 800, textAlign: "center", margin: "0 0 4px" }}>
+        <div style={{ fontSize: "var(--fs-42)", textAlign: "center", marginBottom: 14 }}>🏆</div>
+        <h2 style={{ color: "#D4AF37", fontSize: "var(--fs-21)", fontWeight: 800, textAlign: "center", margin: "0 0 4px" }}>
           Welcome, {agent.name.split(" ")[0]}!
         </h2>
-        <p style={{ color: "#D4AF37", fontSize: 11, textAlign: "center", letterSpacing: 2, textTransform: "uppercase", margin: "0 0 20px" }}>
+        <p style={{ color: "#D4AF37", fontSize: "var(--fs-11)", textAlign: "center", letterSpacing: 2, textTransform: "uppercase", margin: "0 0 20px" }}>
           Dream the Change · Team Victory
         </p>
-        <div style={{ color: "rgba(255,255,255,0.82)", fontSize: 14, lineHeight: 1.75 }}>
+        <div style={{ color: "rgba(255,255,255,0.82)", fontSize: "var(--fs-14)", lineHeight: 1.75 }}>
           <p style={{ margin: "0 0 12px" }}>Starting your own business, no matter the industry, is never easy. Most take years to build — but you're not doing it alone.</p>
           <p style={{ margin: "0 0 12px" }}>Our goal is simple: give you a clear path from <strong style={{ color: "#D4AF37" }}>learning the product</strong> → <strong style={{ color: "#D4AF37" }}>understanding the system</strong> → <strong style={{ color: "#D4AF37" }}>working with real clients in the field.</strong></p>
           <p style={{ margin: 0 }}>This is a blueprint to help you become independent and scale your own agency. Welcome to Team Victory.</p>
@@ -392,7 +453,7 @@ function WelcomePhase({ agent, onComplete }) {
       </div>
 
       <div style={{ background: "rgba(255,255,255,0.04)", borderRadius: 16, padding: 18, marginBottom: 14, border: "1px solid rgba(255,255,255,0.08)" }}>
-        <div style={{ fontWeight: 700, color: "#fff", fontSize: 14, marginBottom: 14 }}>What you're committing to:</div>
+        <div style={{ fontWeight: 700, color: "#fff", fontSize: "var(--fs-14)", marginBottom: 14 }}>What you're committing to:</div>
         {[
           { icon: "👥", title: "Recruiting (if you want to expand)", desc: "Not mandatory to grow — but if you want to build, always be on the lookout for talent." },
           { icon: "🧭", title: "Leadership", desc: "Lead by example, think big, keep things simple. Your people watch your every step." },
@@ -401,23 +462,23 @@ function WelcomePhase({ agent, onComplete }) {
           { icon: "🏗️", title: "Duplication", desc: "Keep duplicating yourself by running the pure system to build your CFT factory." },
         ].map((item, i) => (
           <div key={i} style={{ display: "flex", gap: 12, paddingBottom: i < 4 ? 12 : 0, marginBottom: i < 4 ? 12 : 0, borderBottom: i < 4 ? "1px solid rgba(255,255,255,0.06)" : "none" }}>
-            <div style={{ fontSize: 22, flexShrink: 0 }}>{item.icon}</div>
+            <div style={{ fontSize: "var(--fs-22)", flexShrink: 0 }}>{item.icon}</div>
             <div>
-              <div style={{ color: "#fff", fontWeight: 700, fontSize: 13, marginBottom: 2 }}>{item.title}</div>
-              <div style={{ color: "rgba(255,255,255,0.5)", fontSize: 12, lineHeight: 1.6 }}>{item.desc}</div>
+              <div style={{ color: "#fff", fontWeight: 700, fontSize: "var(--fs-13)", marginBottom: 2 }}>{item.title}</div>
+              <div style={{ color: "rgba(255,255,255,0.5)", fontSize: "var(--fs-12)", lineHeight: 1.6 }}>{item.desc}</div>
             </div>
           </div>
         ))}
       </div>
 
       <div style={{ background: "rgba(212,175,55,0.08)", borderRadius: 12, padding: 14, marginBottom: 18, border: "1px solid #D4AF3733" }}>
-        <div style={{ color: "#D4AF37", fontWeight: 700, fontSize: 12, marginBottom: 5 }}>🎯 The Simple Flow</div>
-        <div style={{ color: "rgba(255,255,255,0.8)", fontSize: 13, lineHeight: 1.6 }}>
+        <div style={{ color: "#D4AF37", fontWeight: 700, fontSize: "var(--fs-12)", marginBottom: 5 }}>🎯 The Simple Flow</div>
+        <div style={{ color: "rgba(255,255,255,0.8)", fontSize: "var(--fs-13)", lineHeight: 1.6 }}>
           <strong style={{ color: "#fff" }}>1. Product</strong> → learn what we do and how we help clients. <strong style={{ color: "#fff" }}>2. System</strong> → learn how we build the business and duplicate it. <strong style={{ color: "#fff" }}>3. Field</strong> → apply the knowledge with real people, real conversations.
         </div>
       </div>
 
-      <button onClick={onComplete} style={{ width: "100%", padding: "15px 0", borderRadius: 14, border: "none", cursor: "pointer", background: "linear-gradient(135deg, #D4AF37, #B8962E)", color: "#000", fontWeight: 800, fontSize: 16, boxShadow: "0 6px 20px #D4AF3755" }}>
+      <button onClick={onComplete} style={{ width: "100%", padding: "15px 0", borderRadius: 14, border: "none", cursor: "pointer", background: "linear-gradient(135deg, #D4AF37, #B8962E)", color: "#000", fontWeight: 800, fontSize: "var(--fs-16)", boxShadow: "0 6px 20px #D4AF3755" }}>
         Learn It. Do It. Let's Go! 🚀
       </button>
     </div>
@@ -458,44 +519,44 @@ function FortuneListCheckin({ progress, onUpdate }) {
   return (
     <div style={{ background: "#0c1a2e", borderRadius: 14, padding: 16, marginBottom: 16, border: "1px solid rgba(255,255,255,0.1)" }}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8, flexWrap: "wrap", gap: 6 }}>
-        <div style={{ fontSize: 12, fontWeight: 800, color: "#fff", letterSpacing: 0.5, textTransform: "uppercase" }}>📋 Fortune List Check-In</div>
-        <span style={{ fontSize: 11, fontWeight: 700, color: count > 0 ? "#10B981" : "rgba(255,255,255,0.4)" }}>{count > 0 ? `${count} names counted` : "No check-in yet"}</span>
+        <div style={{ fontSize: "var(--fs-12)", fontWeight: 800, color: "#fff", letterSpacing: 0.5, textTransform: "uppercase" }}>📋 Fortune List Check-In</div>
+        <span style={{ fontSize: "var(--fs-11)", fontWeight: 700, color: count > 0 ? "#10B981" : "rgba(255,255,255,0.4)" }}>{count > 0 ? `${count} names counted` : "No check-in yet"}</span>
       </div>
-      <p style={{ color: "rgba(255,255,255,0.45)", fontSize: 11.5, lineHeight: 1.6, margin: "0 0 12px" }}>
+      <p style={{ color: "rgba(255,255,255,0.45)", fontSize: "var(--fs-11-5)", lineHeight: 1.6, margin: "0 0 12px" }}>
         Load their Fortune List, or build it together here. <strong style={{ color: "#fff" }}>Names, phone numbers, and emails are never saved</strong> — only the count, so this record can be shared without carrying anybody's contact details.
       </p>
 
       <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 14 }}>
-        <label style={{ display: "flex", alignItems: "center", gap: 6, background: "#0B1B36", border: "1px solid rgba(255,255,255,0.15)", borderRadius: 8, padding: "8px 14px", cursor: "pointer", color: "#fff", fontSize: 12, fontWeight: 700 }}>
+        <label style={{ display: "flex", alignItems: "center", gap: 6, background: "#0B1B36", border: "1px solid rgba(255,255,255,0.15)", borderRadius: 8, padding: "8px 14px", cursor: "pointer", color: "#fff", fontSize: "var(--fs-12)", fontWeight: 700 }}>
           {Ic.upload(12, "#fff")} Load a Fortune List CSV
           <input type="file" accept=".csv" style={{ display: "none" }} onChange={handleCsvUpload} />
         </label>
         {count > 0 && (
-          <button onClick={() => { saveCount(0); setSavedMsg(""); }} style={{ background: "transparent", border: "1px solid rgba(255,255,255,0.15)", borderRadius: 8, padding: "8px 14px", color: "rgba(255,255,255,0.5)", fontSize: 12, cursor: "pointer" }}>Clear the check-in</button>
+          <button onClick={() => { saveCount(0); setSavedMsg(""); }} style={{ background: "transparent", border: "1px solid rgba(255,255,255,0.15)", borderRadius: 8, padding: "8px 14px", color: "rgba(255,255,255,0.5)", fontSize: "var(--fs-12)", cursor: "pointer" }}>Clear the check-in</button>
         )}
       </div>
 
       <div style={{ background: "rgba(255,255,255,0.04)", borderRadius: 10, padding: 12 }}>
-        <div style={{ fontSize: 12, fontWeight: 700, color: "#fff", marginBottom: 8 }}>Build the 100 — do it together</div>
+        <div style={{ fontSize: "var(--fs-12)", fontWeight: 700, color: "#fff", marginBottom: 8 }}>Build the 100 — do it together</div>
         <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginBottom: 10 }}>
           {categories.map(c => (
             <button key={c} type="button" onClick={() => setDraft(d => d + (d && !d.endsWith("\n") ? "\n" : "") + `— ${c} —\n`)}
-              style={{ fontSize: 10.5, background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 99, padding: "4px 10px", color: "rgba(255,255,255,0.6)", cursor: "pointer" }}>{c}</button>
+              style={{ fontSize: "var(--fs-10-5)", background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 99, padding: "4px 10px", color: "rgba(255,255,255,0.6)", cursor: "pointer" }}>{c}</button>
           ))}
         </div>
         <textarea value={draft} onChange={e => setDraft(e.target.value)} placeholder={"One name per line.\nMum\nDanny from the gym\nTuan - old job\n..."} rows={5}
-          style={{ width: "100%", background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.12)", borderRadius: 8, padding: "8px 10px", color: "#fff", fontSize: 12.5, boxSizing: "border-box", resize: "vertical", fontFamily: "inherit" }} />
+          style={{ width: "100%", background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.12)", borderRadius: 8, padding: "8px 10px", color: "#fff", fontSize: "var(--fs-12-5)", boxSizing: "border-box", resize: "vertical", fontFamily: "inherit" }} />
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: 8 }}>
-          <span style={{ fontSize: 11, color: "rgba(255,255,255,0.4)" }}>{countLines(draft)} names</span>
-          <button onClick={handleSaveDraft} disabled={!draft.trim()} style={{ background: "#D4AF37", color: "#000", border: "none", borderRadius: 8, padding: "7px 16px", fontWeight: 700, fontSize: 12, cursor: draft.trim() ? "pointer" : "default", opacity: draft.trim() ? 1 : 0.5 }}>Save Count</button>
+          <span style={{ fontSize: "var(--fs-11)", color: "rgba(255,255,255,0.4)" }}>{countLines(draft)} names</span>
+          <button onClick={handleSaveDraft} disabled={!draft.trim()} style={{ background: "#D4AF37", color: "#000", border: "none", borderRadius: 8, padding: "7px 16px", fontWeight: 700, fontSize: "var(--fs-12)", cursor: draft.trim() ? "pointer" : "default", opacity: draft.trim() ? 1 : 0.5 }}>Save Count</button>
         </div>
       </div>
-      {savedMsg && <div style={{ marginTop: 10, fontSize: 11.5, color: "#10B981" }}>{savedMsg}</div>}
+      {savedMsg && <div style={{ marginTop: 10, fontSize: "var(--fs-11-5)", color: "#10B981" }}>{savedMsg}</div>}
     </div>
   );
 }
 
-const sheetCellStyle = { width: "100%", background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 5, padding: "5px 7px", color: "#fff", fontSize: 12, boxSizing: "border-box", fontFamily: "inherit" };
+const sheetCellStyle = { width: "100%", background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 5, padding: "5px 7px", color: "#fff", fontSize: "var(--fs-12)", boxSizing: "border-box", fontFamily: "inherit" };
 
 // ─── FORTUNE LIST SHEET (50-line keying grid) ─────────────────────────────────
 function FortuneListSheet({ progress, onUpdate }) {
@@ -509,15 +570,15 @@ function FortuneListSheet({ progress, onUpdate }) {
   return (
     <div style={{ background: "#0c1a2e", borderRadius: 14, padding: 16, marginBottom: 16, border: "1px solid rgba(255,255,255,0.1)" }}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 10, flexWrap: "wrap", gap: 6 }}>
-        <div style={{ fontSize: 12, fontWeight: 800, color: "#fff", letterSpacing: 0.5, textTransform: "uppercase" }}>📝 Fortune List — Key It In Live</div>
-        <span style={{ fontSize: 11, color: "rgba(255,255,255,0.4)" }}>{filledCount}/100 filled</span>
+        <div style={{ fontSize: "var(--fs-12)", fontWeight: 800, color: "#fff", letterSpacing: 0.5, textTransform: "uppercase" }}>📝 Fortune List — Key It In Live</div>
+        <span style={{ fontSize: "var(--fs-11)", color: "rgba(255,255,255,0.4)" }}>{filledCount}/100 filled</span>
       </div>
-      <p style={{ color: "rgba(255,255,255,0.4)", fontSize: 11, margin: "0 0 10px", lineHeight: 1.5 }}>Don't think — just let the names flow. Type the name, their number, mark <strong style={{ color: "#fff" }}>O</strong> for Opportunity, <strong style={{ color: "#fff" }}>L</strong> for Life, <strong style={{ color: "#fff" }}>R</strong> for Retirement, and jot a quick note.</p>
-      <div style={{ color: "rgba(255,255,255,0.35)", fontSize: 11.5, fontStyle: "italic", margin: "0 0 12px" }}>
+      <p style={{ color: "rgba(255,255,255,0.4)", fontSize: "var(--fs-11)", margin: "0 0 10px", lineHeight: 1.5 }}>Don't think — just let the names flow. Type the name, their number, mark <strong style={{ color: "#fff" }}>O</strong> for Opportunity, <strong style={{ color: "#fff" }}>L</strong> for Life, <strong style={{ color: "#fff" }}>R</strong> for Retirement, and jot a quick note.</p>
+      <div style={{ color: "rgba(255,255,255,0.35)", fontSize: "var(--fs-11-5)", fontStyle: "italic", margin: "0 0 12px" }}>
         "Every name on this list is someone you can introduce to a solution that could genuinely change their life."
       </div>
       <div style={{ overflowX: "auto" }}>
-        <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 12, minWidth: 560 }}>
+        <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "var(--fs-12)", minWidth: 560 }}>
           <thead>
             <tr style={{ textAlign: "left", color: "rgba(255,255,255,0.4)" }}>
               <th style={{ width: 26, padding: "4px 6px", fontWeight: 600 }}>#</th>
@@ -564,7 +625,7 @@ function PhaseContent({ phase, progress, fullProgress, onUpdate, videos, files, 
 
   if (phase.type === "documents") return <DocumentsView files={files} links={links} isAdmin={isAdmin} onUploadFile={onUploadFile} onUpdateLink={onUpdateLink} />;
   if (phase.type === "fortunelist") return (
-    <div style={{ maxWidth: 620, margin: "0 auto", padding: "0 16px 40px" }}>
+    <div style={{ maxWidth: "var(--mw-620)", margin: "0 auto", padding: "0 16px 40px" }}>
       <FortuneListSheet progress={local} onUpdate={d => { setLocal(d); onUpdate(d); }} />
       <FortuneListCheckin progress={local} onUpdate={d => { setLocal(d); onUpdate(d); }} />
     </div>
@@ -584,27 +645,27 @@ function PhaseContent({ phase, progress, fullProgress, onUpdate, videos, files, 
   const pct = totalCheckable > 0 ? Math.round((completedCount / totalCheckable) * 100) : 0;
 
   return (
-    <div style={{ maxWidth: 620, margin: "0 auto", padding: "0 16px 40px" }}>
+    <div style={{ maxWidth: "var(--mw-620)", margin: "0 auto", padding: "0 16px 40px" }}>
       <div style={{ background: phase.darkBg, borderRadius: 16, padding: 18, marginBottom: 14, border: `1px solid ${phase.color}33` }}>
         <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 8 }}>
-          <span style={{ fontSize: 26 }}>{phase.emoji}</span>
+          <span style={{ fontSize: "var(--fs-26)" }}>{phase.emoji}</span>
           <div style={{ flex: 1 }}>
-            <div style={{ fontSize: 10, color: phase.color, fontWeight: 700, letterSpacing: 1.5, textTransform: "uppercase" }}>{phase.vosStep}</div>
-            <div style={{ fontSize: 17, fontWeight: 800, color: "#fff" }}>{phase.title}</div>
+            <div style={{ fontSize: "var(--fs-10)", color: phase.color, fontWeight: 700, letterSpacing: 1.5, textTransform: "uppercase" }}>{phase.vosStep}</div>
+            <div style={{ fontSize: "var(--fs-17)", fontWeight: 800, color: "#fff" }}>{phase.title}</div>
           </div>
           <div style={{ textAlign: "right" }}>
-            <div style={{ fontSize: 26, fontWeight: 800, color: phase.color }}>{pct}%</div>
-            <div style={{ fontSize: 10, color: "rgba(255,255,255,0.4)" }}>{completedCount}/{totalCheckable}</div>
+            <div style={{ fontSize: "var(--fs-26)", fontWeight: 800, color: phase.color }}>{pct}%</div>
+            <div style={{ fontSize: "var(--fs-10)", color: "rgba(255,255,255,0.4)" }}>{completedCount}/{totalCheckable}</div>
           </div>
         </div>
         <Bar pct={pct} color={phase.color} />
-        {phase.description && <p style={{ color: "rgba(255,255,255,0.45)", fontSize: 12, margin: "8px 0 0", lineHeight: 1.6 }}>{phase.description}</p>}
+        {phase.description && <p style={{ color: "rgba(255,255,255,0.45)", fontSize: "var(--fs-12)", margin: "8px 0 0", lineHeight: 1.6 }}>{phase.description}</p>}
       </div>
 
       {phase.steps.map(step => {
         if (step.type === "header") {
           return (
-            <div key={step.id} style={{ color: phase.color, fontSize: 12, fontWeight: 800, letterSpacing: 1, textTransform: "uppercase", margin: "16px 2px 8px" }}>
+            <div key={step.id} style={{ color: phase.color, fontSize: "var(--fs-12)", fontWeight: 800, letterSpacing: 1, textTransform: "uppercase", margin: "16px 2px 8px" }}>
               {step.label}
             </div>
           );
@@ -627,9 +688,9 @@ function PhaseContent({ phase, progress, fullProgress, onUpdate, videos, files, 
                   <div style={{ width: 22, height: 22, borderRadius: 6, border: `2px solid ${done ? phase.color : "rgba(255,255,255,0.2)"}`, background: done ? phase.color : "transparent", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
                     {done && Ic.check(13, "#000")}
                   </div>
-                  <span style={{ color: done ? "rgba(255,255,255,0.45)" : "rgba(255,255,255,0.88)", fontSize: 13, flex: 1, textDecoration: done ? "line-through" : "none" }}>{step.label}</span>
-                  {step.url && !done && <a href={step.url} target="_blank" rel="noopener noreferrer" onClick={e => e.stopPropagation()} style={{ fontSize: 11, color: phase.color, textDecoration: "none", background: `${phase.color}18`, padding: "3px 8px", borderRadius: 6, flexShrink: 0 }}>Open ↗</a>}
-                  {step.linkKey && links[step.linkKey] && <a href={links[step.linkKey]} target="_blank" rel="noopener noreferrer" onClick={e => e.stopPropagation()} style={{ fontSize: 11, color: phase.color, textDecoration: "none", background: `${phase.color}18`, padding: "3px 8px", borderRadius: 6, flexShrink: 0 }}>Open ↗</a>}
+                  <span style={{ color: done ? "rgba(255,255,255,0.45)" : "rgba(255,255,255,0.88)", fontSize: "var(--fs-13)", flex: 1, textDecoration: done ? "line-through" : "none" }}>{step.label}</span>
+                  {step.url && !done && <a href={step.url} target="_blank" rel="noopener noreferrer" onClick={e => e.stopPropagation()} style={{ fontSize: "var(--fs-11)", color: phase.color, textDecoration: "none", background: `${phase.color}18`, padding: "3px 8px", borderRadius: 6, flexShrink: 0 }}>Open ↗</a>}
+                  {step.linkKey && links[step.linkKey] && <a href={links[step.linkKey]} target="_blank" rel="noopener noreferrer" onClick={e => e.stopPropagation()} style={{ fontSize: "var(--fs-11)", color: phase.color, textDecoration: "none", background: `${phase.color}18`, padding: "3px 8px", borderRadius: 6, flexShrink: 0 }}>Open ↗</a>}
                 </div>
                 {step.linkKey && isAdmin && (
                   <div style={{ padding: "0 14px 12px" }}>
@@ -637,7 +698,7 @@ function PhaseContent({ phase, progress, fullProgress, onUpdate, videos, files, 
                   </div>
                 )}
                 {step.note && (
-                  <div style={{ padding: "0 14px 12px", color: "rgba(255,255,255,0.35)", fontSize: 11, fontStyle: "italic" }}>({step.note})</div>
+                  <div style={{ padding: "0 14px 12px", color: "rgba(255,255,255,0.35)", fontSize: "var(--fs-11)", fontStyle: "italic" }}>({step.note})</div>
                 )}
               </div>
             )}
@@ -648,25 +709,25 @@ function PhaseContent({ phase, progress, fullProgress, onUpdate, videos, files, 
                   <div style={{ width: 30, height: 30, borderRadius: 7, background: done ? phase.color : `${phase.color}22`, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
                     {Ic.video(14, done ? "#000" : phase.color)}
                   </div>
-                  <span style={{ color: done ? "rgba(255,255,255,0.5)" : "#fff", fontSize: 13, fontWeight: 600, flex: 1 }}>{step.label}</span>
+                  <span style={{ color: done ? "rgba(255,255,255,0.5)" : "#fff", fontSize: "var(--fs-13)", fontWeight: 600, flex: 1 }}>{step.label}</span>
                   {done && Ic.check(16, phase.color)}
                 </div>
                 {videos[step.videoKey]?.url ? (
                   <>
                     <video controls style={{ width: "100%", borderRadius: 8, maxHeight: 210, background: "#000", display: "block" }} src={videos[step.videoKey].url} />
-                    {!done && <button onClick={() => toggle(step.id)} style={{ marginTop: 8, width: "100%", padding: "9px 0", borderRadius: 8, border: "none", background: phase.color, color: "#000", fontWeight: 700, fontSize: 13, cursor: "pointer" }}>Mark as Watched ✓</button>}
+                    {!done && <button onClick={() => toggle(step.id)} style={{ marginTop: 8, width: "100%", padding: "9px 0", borderRadius: 8, border: "none", background: phase.color, color: "#000", fontWeight: 700, fontSize: "var(--fs-13)", cursor: "pointer" }}>Mark as Watched ✓</button>}
                   </>
                 ) : (
                   <>
                     {isAdmin ? (
-                      <label style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 6, background: "rgba(255,255,255,0.04)", border: `1.5px dashed ${phase.color}44`, borderRadius: 8, padding: 16, cursor: "pointer", color: "rgba(255,255,255,0.35)", fontSize: 12 }}>
+                      <label style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 6, background: "rgba(255,255,255,0.04)", border: `1.5px dashed ${phase.color}44`, borderRadius: 8, padding: 16, cursor: "pointer", color: "rgba(255,255,255,0.35)", fontSize: "var(--fs-12)" }}>
                         {Ic.upload(13, "rgba(255,255,255,0.3)")} Upload video for this step
                         <input type="file" accept="video/*" style={{ display: "none" }} onChange={e => { const f = e.target.files[0]; if (f) onUploadVideo(step.videoKey, f); }} />
                       </label>
                     ) : (
-                      <div style={{ background: "rgba(255,255,255,0.03)", borderRadius: 8, padding: 14, textAlign: "center", color: "rgba(255,255,255,0.25)", fontSize: 12 }}>Training video coming soon</div>
+                      <div style={{ background: "rgba(255,255,255,0.03)", borderRadius: 8, padding: 14, textAlign: "center", color: "rgba(255,255,255,0.25)", fontSize: "var(--fs-12)" }}>Training video coming soon</div>
                     )}
-                    {!done && <button onClick={() => toggle(step.id)} style={{ marginTop: 8, width: "100%", padding: "8px 0", borderRadius: 8, border: `1px solid ${phase.color}44`, background: "transparent", color: phase.color, fontWeight: 600, fontSize: 12, cursor: "pointer" }}>Mark Complete (no video yet)</button>}
+                    {!done && <button onClick={() => toggle(step.id)} style={{ marginTop: 8, width: "100%", padding: "8px 0", borderRadius: 8, border: `1px solid ${phase.color}44`, background: "transparent", color: phase.color, fontWeight: 600, fontSize: "var(--fs-12)", cursor: "pointer" }}>Mark Complete (no video yet)</button>}
                   </>
                 )}
               </div>
@@ -678,12 +739,12 @@ function PhaseContent({ phase, progress, fullProgress, onUpdate, videos, files, 
                   <div style={{ width: 30, height: 30, borderRadius: 7, background: done ? phase.color : `${phase.color}22`, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
                     {Ic.file(14, done ? "#000" : phase.color)}
                   </div>
-                  <span style={{ color: done ? "rgba(255,255,255,0.5)" : "#fff", fontSize: 13, fontWeight: 600, flex: 1 }}>{step.label}</span>
+                  <span style={{ color: done ? "rgba(255,255,255,0.5)" : "#fff", fontSize: "var(--fs-13)", fontWeight: 600, flex: 1 }}>{step.label}</span>
                   {done && Ic.check(16, phase.color)}
                 </div>
                 {files[step.fileKey] ? (
                   <>
-                    <button onClick={() => setExpandedFileStep(expandedFileStep === step.id ? null : step.id)} style={{ display: "flex", alignItems: "center", gap: 8, width: "100%", background: "rgba(255,255,255,0.05)", border: "none", borderRadius: 8, padding: "10px 12px", textAlign: "left", color: phase.color, fontSize: 12.5, fontWeight: 600, marginBottom: 8, cursor: "pointer" }}>
+                    <button onClick={() => setExpandedFileStep(expandedFileStep === step.id ? null : step.id)} style={{ display: "flex", alignItems: "center", gap: 8, width: "100%", background: "rgba(255,255,255,0.05)", border: "none", borderRadius: 8, padding: "10px 12px", textAlign: "left", color: phase.color, fontSize: "var(--fs-12-5)", fontWeight: 600, marginBottom: 8, cursor: "pointer" }}>
                       {Ic.file(14, phase.color)} {files[step.fileKey].name || "Uploaded file"} — {expandedFileStep === step.id ? "hide" : "view"}
                     </button>
                     {expandedFileStep === step.id && (
@@ -694,16 +755,16 @@ function PhaseContent({ phase, progress, fullProgress, onUpdate, videos, files, 
                   </>
                 ) : (
                   canUploadFiles ? (
-                    <label style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 6, background: "rgba(255,255,255,0.04)", border: `1.5px dashed ${phase.color}44`, borderRadius: 8, padding: 16, cursor: "pointer", color: "rgba(255,255,255,0.35)", fontSize: 12, marginBottom: 8 }}>
+                    <label style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 6, background: "rgba(255,255,255,0.04)", border: `1.5px dashed ${phase.color}44`, borderRadius: 8, padding: 16, cursor: "pointer", color: "rgba(255,255,255,0.35)", fontSize: "var(--fs-12)", marginBottom: 8 }}>
                       {Ic.upload(13, "rgba(255,255,255,0.3)")} Upload the completed Check-Up
                       <input type="file" accept=".pdf,image/*,.doc,.docx" style={{ display: "none" }} onChange={e => { const f = e.target.files[0]; if (f) onUploadFile(step.fileKey, f); }} />
                     </label>
                   ) : (
-                    <div style={{ background: "rgba(255,255,255,0.03)", borderRadius: 8, padding: 14, textAlign: "center", color: "rgba(255,255,255,0.25)", fontSize: 12, marginBottom: 8 }}>Nothing uploaded yet</div>
+                    <div style={{ background: "rgba(255,255,255,0.03)", borderRadius: 8, padding: 14, textAlign: "center", color: "rgba(255,255,255,0.25)", fontSize: "var(--fs-12)", marginBottom: 8 }}>Nothing uploaded yet</div>
                   )
                 )}
-                {files[step.fileKey] && !done && <button onClick={() => toggle(step.id)} style={{ width: "100%", padding: "8px 0", borderRadius: 8, border: "none", background: phase.color, color: "#000", fontWeight: 700, fontSize: 13, cursor: "pointer" }}>Mark Complete ✓</button>}
-                {!files[step.fileKey] && !done && <button onClick={() => toggle(step.id)} style={{ width: "100%", padding: "8px 0", borderRadius: 8, border: `1px solid ${phase.color}44`, background: "transparent", color: phase.color, fontWeight: 600, fontSize: 12, cursor: "pointer" }}>Mark Complete (no file yet)</button>}
+                {files[step.fileKey] && !done && <button onClick={() => toggle(step.id)} style={{ width: "100%", padding: "8px 0", borderRadius: 8, border: "none", background: phase.color, color: "#000", fontWeight: 700, fontSize: "var(--fs-13)", cursor: "pointer" }}>Mark Complete ✓</button>}
+                {!files[step.fileKey] && !done && <button onClick={() => toggle(step.id)} style={{ width: "100%", padding: "8px 0", borderRadius: 8, border: `1px solid ${phase.color}44`, background: "transparent", color: phase.color, fontWeight: 600, fontSize: "var(--fs-12)", cursor: "pointer" }}>Mark Complete (no file yet)</button>}
               </div>
             )}
 
@@ -713,7 +774,7 @@ function PhaseContent({ phase, progress, fullProgress, onUpdate, videos, files, 
                   <div style={{ width: 30, height: 30, borderRadius: 7, background: done ? phase.color : `${phase.color}22`, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
                     {Ic.link(14, done ? "#000" : phase.color)}
                   </div>
-                  <span style={{ color: done ? "rgba(255,255,255,0.5)" : "#fff", fontSize: 13, fontWeight: 600, flex: 1 }}>{step.label}</span>
+                  <span style={{ color: done ? "rgba(255,255,255,0.5)" : "#fff", fontSize: "var(--fs-13)", fontWeight: 600, flex: 1 }}>{step.label}</span>
                   {done && Ic.check(16, phase.color)}
                 </div>
                 {isAdmin && (
@@ -722,10 +783,10 @@ function PhaseContent({ phase, progress, fullProgress, onUpdate, videos, files, 
                   </div>
                 )}
                 {links[step.linkKey]
-                  ? <a href={links[step.linkKey]} target="_blank" rel="noopener noreferrer" style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 6, background: phase.color, color: "#000", padding: "10px 0", borderRadius: 8, textDecoration: "none", fontWeight: 700, fontSize: 13 }}>{Ic.link(14, "#000")} Open Link</a>
-                  : <div style={{ background: "rgba(255,255,255,0.03)", borderRadius: 8, padding: 10, textAlign: "center", color: "rgba(255,255,255,0.25)", fontSize: 12 }}>{isAdmin ? "Add the link above" : "Link coming soon"}</div>
+                  ? <a href={links[step.linkKey]} target="_blank" rel="noopener noreferrer" style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 6, background: phase.color, color: "#000", padding: "10px 0", borderRadius: 8, textDecoration: "none", fontWeight: 700, fontSize: "var(--fs-13)" }}>{Ic.link(14, "#000")} Open Link</a>
+                  : <div style={{ background: "rgba(255,255,255,0.03)", borderRadius: 8, padding: 10, textAlign: "center", color: "rgba(255,255,255,0.25)", fontSize: "var(--fs-12)" }}>{isAdmin ? "Add the link above" : "Link coming soon"}</div>
                 }
-                {!done && <button onClick={() => toggle(step.id)} style={{ marginTop: 8, width: "100%", padding: "8px 0", borderRadius: 8, border: `1px solid ${phase.color}44`, background: "transparent", color: phase.color, fontWeight: 600, fontSize: 12, cursor: "pointer" }}>Mark Complete ✓</button>}
+                {!done && <button onClick={() => toggle(step.id)} style={{ marginTop: 8, width: "100%", padding: "8px 0", borderRadius: 8, border: `1px solid ${phase.color}44`, background: "transparent", color: phase.color, fontWeight: 600, fontSize: "var(--fs-12)", cursor: "pointer" }}>Mark Complete ✓</button>}
               </div>
             )}
 
@@ -735,7 +796,7 @@ function PhaseContent({ phase, progress, fullProgress, onUpdate, videos, files, 
                   <div style={{ width: 30, height: 30, borderRadius: 7, background: done ? phase.color : `${phase.color}22`, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
                     {Ic.cal(14, done ? "#000" : phase.color)}
                   </div>
-                  <span style={{ color: done ? "rgba(255,255,255,0.5)" : "#fff", fontSize: 13, fontWeight: 600, flex: 1 }}>{step.label}</span>
+                  <span style={{ color: done ? "rgba(255,255,255,0.5)" : "#fff", fontSize: "var(--fs-13)", fontWeight: 600, flex: 1 }}>{step.label}</span>
                   {done && Ic.check(16, phase.color)}
                 </div>
                 {isAdmin && (
@@ -744,10 +805,10 @@ function PhaseContent({ phase, progress, fullProgress, onUpdate, videos, files, 
                   </div>
                 )}
                 {calendlyLinks[step.calendlyKey]
-                  ? <a href={calendlyLinks[step.calendlyKey]} target="_blank" rel="noopener noreferrer" style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 6, background: phase.color, color: "#000", padding: "10px 0", borderRadius: 8, textDecoration: "none", fontWeight: 700, fontSize: 13 }}>{Ic.cal(14, "#000")} Book on Calendly</a>
-                  : <div style={{ background: "rgba(255,255,255,0.03)", borderRadius: 8, padding: 10, textAlign: "center", color: "rgba(255,255,255,0.25)", fontSize: 12 }}>{isAdmin ? "Add your Calendly link above" : "Booking link coming soon"}</div>
+                  ? <a href={calendlyLinks[step.calendlyKey]} target="_blank" rel="noopener noreferrer" style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 6, background: phase.color, color: "#000", padding: "10px 0", borderRadius: 8, textDecoration: "none", fontWeight: 700, fontSize: "var(--fs-13)" }}>{Ic.cal(14, "#000")} Book on Calendly</a>
+                  : <div style={{ background: "rgba(255,255,255,0.03)", borderRadius: 8, padding: 10, textAlign: "center", color: "rgba(255,255,255,0.25)", fontSize: "var(--fs-12)" }}>{isAdmin ? "Add your Calendly link above" : "Booking link coming soon"}</div>
                 }
-                {!done && <button onClick={() => toggle(step.id)} style={{ marginTop: 8, width: "100%", padding: "8px 0", borderRadius: 8, border: `1px solid ${phase.color}44`, background: "transparent", color: phase.color, fontWeight: 600, fontSize: 12, cursor: "pointer" }}>Mark as Booked ✓</button>}
+                {!done && <button onClick={() => toggle(step.id)} style={{ marginTop: 8, width: "100%", padding: "8px 0", borderRadius: 8, border: `1px solid ${phase.color}44`, background: "transparent", color: phase.color, fontWeight: 600, fontSize: "var(--fs-12)", cursor: "pointer" }}>Mark as Booked ✓</button>}
               </div>
             )}
 
@@ -757,49 +818,49 @@ function PhaseContent({ phase, progress, fullProgress, onUpdate, videos, files, 
                   <div style={{ width: 30, height: 30, borderRadius: 7, background: done ? phase.color : `${phase.color}22`, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
                     {Ic.cal(14, done ? "#000" : phase.color)}
                   </div>
-                  <span style={{ color: done ? "rgba(255,255,255,0.5)" : "#fff", fontSize: 13, fontWeight: 600, flex: 1 }}>{step.label}</span>
+                  <span style={{ color: done ? "rgba(255,255,255,0.5)" : "#fff", fontSize: "var(--fs-13)", fontWeight: 600, flex: 1 }}>{step.label}</span>
                   {done && Ic.check(16, phase.color)}
                 </div>
 
-                <div style={{ fontSize: 10.5, color: "rgba(255,255,255,0.4)", fontWeight: 700, letterSpacing: 0.5, textTransform: "uppercase", marginBottom: 6 }}>Book Ahead</div>
+                <div style={{ fontSize: "var(--fs-10-5)", color: "rgba(255,255,255,0.4)", fontWeight: 700, letterSpacing: 0.5, textTransform: "uppercase", marginBottom: 6 }}>Book Ahead</div>
                 {isAdmin && (
                   <div style={{ marginBottom: 8 }}>
                     <LinkField value={calendlyLinks[step.calendlyKey]} onSave={v => onUpdateCalendly(step.calendlyKey, v)} placeholder="Paste Calendly link..." color={phase.color} />
                   </div>
                 )}
                 {calendlyLinks[step.calendlyKey] ? (
-                  <a href={calendlyLinks[step.calendlyKey]} target="_blank" rel="noopener noreferrer" style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 6, background: phase.color, color: "#000", padding: "9px 0", borderRadius: 8, textDecoration: "none", fontWeight: 700, fontSize: 12.5, marginBottom: 6 }}>{Ic.cal(13, "#000")} Book on Calendly</a>
+                  <a href={calendlyLinks[step.calendlyKey]} target="_blank" rel="noopener noreferrer" style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 6, background: phase.color, color: "#000", padding: "9px 0", borderRadius: 8, textDecoration: "none", fontWeight: 700, fontSize: "var(--fs-12-5)", marginBottom: 6 }}>{Ic.cal(13, "#000")} Book on Calendly</a>
                 ) : (
-                  <div style={{ background: "rgba(255,255,255,0.03)", borderRadius: 8, padding: 9, textAlign: "center", color: "rgba(255,255,255,0.25)", fontSize: 11.5, marginBottom: 6 }}>{isAdmin ? "Add your Calendly link above" : "Booking link coming soon"}</div>
+                  <div style={{ background: "rgba(255,255,255,0.03)", borderRadius: 8, padding: 9, textAlign: "center", color: "rgba(255,255,255,0.25)", fontSize: "var(--fs-11-5)", marginBottom: 6 }}>{isAdmin ? "Add your Calendly link above" : "Booking link coming soon"}</div>
                 )}
                 {!local[step.id]?.calendlyBooked && (
-                  <button onClick={() => updateStep(step.id, { ...local[step.id], calendlyBooked: true })} style={{ width: "100%", padding: "7px 0", borderRadius: 8, border: `1px solid ${phase.color}44`, background: "transparent", color: phase.color, fontWeight: 600, fontSize: 11.5, cursor: "pointer" }}>Mark as Booked ✓</button>
+                  <button onClick={() => updateStep(step.id, { ...local[step.id], calendlyBooked: true })} style={{ width: "100%", padding: "7px 0", borderRadius: 8, border: `1px solid ${phase.color}44`, background: "transparent", color: phase.color, fontWeight: 600, fontSize: "var(--fs-11-5)", cursor: "pointer" }}>Mark as Booked ✓</button>
                 )}
                 {local[step.id]?.calendlyBooked && (
                   <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", background: `${phase.color}18`, borderRadius: 8, padding: "7px 10px" }}>
-                    <span style={{ fontSize: 11.5, color: phase.color, fontWeight: 700 }}>✓ Booked on Calendly</span>
-                    <button onClick={() => updateStep(step.id, { ...local[step.id], calendlyBooked: false })} style={{ background: "none", border: "none", color: "rgba(255,255,255,0.3)", fontSize: 11, cursor: "pointer" }}>undo</button>
+                    <span style={{ fontSize: "var(--fs-11-5)", color: phase.color, fontWeight: 700 }}>✓ Booked on Calendly</span>
+                    <button onClick={() => updateStep(step.id, { ...local[step.id], calendlyBooked: false })} style={{ background: "none", border: "none", color: "rgba(255,255,255,0.3)", fontSize: "var(--fs-11)", cursor: "pointer" }}>undo</button>
                   </div>
                 )}
 
-                <div style={{ textAlign: "center", color: "rgba(255,255,255,0.3)", fontSize: 10.5, fontWeight: 700, margin: "10px 0" }}>— OR —</div>
+                <div style={{ textAlign: "center", color: "rgba(255,255,255,0.3)", fontSize: "var(--fs-10-5)", fontWeight: 700, margin: "10px 0" }}>— OR —</div>
 
-                <div style={{ fontSize: 10.5, color: "rgba(255,255,255,0.4)", fontWeight: 700, letterSpacing: 0.5, textTransform: "uppercase", marginBottom: 6 }}>Scheduled on Field</div>
+                <div style={{ fontSize: "var(--fs-10-5)", color: "rgba(255,255,255,0.4)", fontWeight: 700, letterSpacing: 0.5, textTransform: "uppercase", marginBottom: 6 }}>Scheduled on Field</div>
                 <input
                   type="datetime-local"
                   value={local[step.id]?.fieldDateTime || ""}
                   onChange={e => updateStep(step.id, { ...local[step.id], fieldDateTime: e.target.value })}
-                  style={{ width: "100%", background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 7, padding: "7px 10px", color: "#fff", fontSize: 12, boxSizing: "border-box" }}
+                  style={{ width: "100%", background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 7, padding: "7px 10px", color: "#fff", fontSize: "var(--fs-12)", boxSizing: "border-box" }}
                 />
                 {local[step.id]?.fieldDateTime && (
-                  <div style={{ fontSize: 11, color: phase.color, fontWeight: 700, marginTop: 6 }}>✓ Logged in the field</div>
+                  <div style={{ fontSize: "var(--fs-11)", color: phase.color, fontWeight: 700, marginTop: 6 }}>✓ Logged in the field</div>
                 )}
               </div>
             )}
 
             {step.type === "appt_category" && (
               <div style={{ padding: 14 }}>
-                <div style={{ fontSize: 13, fontWeight: 600, color: "#fff", marginBottom: 10 }}>{step.label}</div>
+                <div style={{ fontSize: "var(--fs-13)", fontWeight: 600, color: "#fff", marginBottom: 10 }}>{step.label}</div>
                 {step.categories.map((cat, ci) => {
                   const catDone = local[step.id]?.categories?.[ci];
                   return (
@@ -808,7 +869,7 @@ function PhaseContent({ phase, progress, fullProgress, onUpdate, videos, files, 
                       <div style={{ width: 20, height: 20, borderRadius: 5, border: `2px solid ${catDone ? phase.color : "rgba(255,255,255,0.2)"}`, background: catDone ? phase.color : "transparent", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
                         {catDone && Ic.check(11, "#000")}
                       </div>
-                      <span style={{ color: catDone ? "rgba(255,255,255,0.4)" : "rgba(255,255,255,0.85)", fontSize: 13, textDecoration: catDone ? "line-through" : "none" }}>{cat}</span>
+                      <span style={{ color: catDone ? "rgba(255,255,255,0.4)" : "rgba(255,255,255,0.85)", fontSize: "var(--fs-13)", textDecoration: catDone ? "line-through" : "none" }}>{cat}</span>
                     </div>
                   );
                 })}
@@ -819,7 +880,7 @@ function PhaseContent({ phase, progress, fullProgress, onUpdate, videos, files, 
       })}
 
       {pct === 100 && (
-        <div style={{ textAlign: "center", padding: 18, color: phase.color, fontWeight: 700, fontSize: 14 }}>
+        <div style={{ textAlign: "center", padding: 18, color: phase.color, fontWeight: 700, fontSize: "var(--fs-14)" }}>
           {phase.emoji} Phase Complete — Keep Rising! 🏆
         </div>
       )}
@@ -831,10 +892,10 @@ function PhaseContent({ phase, progress, fullProgress, onUpdate, videos, files, 
 function DocumentsView({ files, links, isAdmin, onUploadFile, onUpdateLink }) {
   const [expandedId, setExpandedId] = useState(null);
   return (
-    <div style={{ maxWidth: 640, margin: "0 auto", padding: "0 16px 40px" }}>
+    <div style={{ maxWidth: "var(--mw-640)", margin: "0 auto", padding: "0 16px 40px" }}>
       <div style={{ background: "#0c1a2e", borderRadius: 16, padding: 18, marginBottom: 14, border: "1px solid #3B82F633" }}>
-        <div style={{ fontSize: 17, fontWeight: 800, color: "#fff" }}>📁 The Documents</div>
-        <p style={{ color: "rgba(255,255,255,0.45)", fontSize: 12, margin: "6px 0 0", lineHeight: 1.6 }}>Reference library for onboarding a new agent — download or open any of these, any time.</p>
+        <div style={{ fontSize: "var(--fs-17)", fontWeight: 800, color: "#fff" }}>📁 The Documents</div>
+        <p style={{ color: "rgba(255,255,255,0.45)", fontSize: "var(--fs-12)", margin: "6px 0 0", lineHeight: 1.6 }}>Reference library for onboarding a new agent — download or open any of these, any time.</p>
       </div>
 
       {DOCS.map((doc, i) => {
@@ -846,29 +907,29 @@ function DocumentsView({ files, links, isAdmin, onUploadFile, onUpdateLink }) {
           <div key={doc.id}>
             {showBonusBanner && (
               <div style={{ background: "linear-gradient(135deg, #8a6a1f, #D4AF37)", borderRadius: 12, padding: "14px 16px", marginTop: 16, marginBottom: 8 }}>
-                <div style={{ color: "#1a1400", fontWeight: 800, fontSize: 13, marginBottom: 5, letterSpacing: 0.5 }}>🏅 BONUS — WHY PFA</div>
-                <div style={{ color: "#1a1400", fontSize: 12, lineHeight: 1.6, opacity: 0.85 }}>The Recruiting Edge: what you can offer that nobody else can.</div>
+                <div style={{ color: "#1a1400", fontWeight: 800, fontSize: "var(--fs-13)", marginBottom: 5, letterSpacing: 0.5 }}>🏅 BONUS — WHY PFA</div>
+                <div style={{ color: "#1a1400", fontSize: "var(--fs-12)", lineHeight: 1.6, opacity: 0.85 }}>The Recruiting Edge: what you can offer that nobody else can.</div>
               </div>
             )}
             <div style={{ background: "rgba(255,255,255,0.04)", borderRadius: 12, padding: 14, marginBottom: 8, border: "1px solid rgba(255,255,255,0.08)" }}>
             <div style={{ display: "flex", gap: 10 }}>
-              <div style={{ flexShrink: 0, width: 48, height: 24, borderRadius: 6, background: "rgba(255,255,255,0.08)", color: "rgba(255,255,255,0.6)", fontSize: 9, fontWeight: 800, display: "flex", alignItems: "center", justifyContent: "center", letterSpacing: 0.5 }}>{doc.type}</div>
+              <div style={{ flexShrink: 0, width: 48, height: 24, borderRadius: 6, background: "rgba(255,255,255,0.08)", color: "rgba(255,255,255,0.6)", fontSize: "var(--fs-9)", fontWeight: 800, display: "flex", alignItems: "center", justifyContent: "center", letterSpacing: 0.5 }}>{doc.type}</div>
               <div style={{ flex: 1, minWidth: 0 }}>
-                <div style={{ color: "#fff", fontWeight: 700, fontSize: 13.5, marginBottom: 3 }}>{doc.title}</div>
-                <div style={{ color: "rgba(255,255,255,0.45)", fontSize: 12, lineHeight: 1.55, marginBottom: 7 }}>{doc.desc}</div>
+                <div style={{ color: "#fff", fontWeight: 700, fontSize: "var(--fs-13-5)", marginBottom: 3 }}>{doc.title}</div>
+                <div style={{ color: "rgba(255,255,255,0.45)", fontSize: "var(--fs-12)", lineHeight: 1.55, marginBottom: 7 }}>{doc.desc}</div>
                 <div style={{ display: "flex", gap: 5, flexWrap: "wrap" }}>
-                  {doc.tags.map(t => <span key={t} style={{ fontSize: 9.5, fontWeight: 700, color: "#D4AF37", background: "#D4AF3718", padding: "2px 7px", borderRadius: 99 }}>{t}</span>)}
+                  {doc.tags.map(t => <span key={t} style={{ fontSize: "var(--fs-9-5)", fontWeight: 700, color: "#D4AF37", background: "#D4AF3718", padding: "2px 7px", borderRadius: 99 }}>{t}</span>)}
                 </div>
               </div>
             </div>
 
             <div style={{ marginTop: 10 }}>
               {file ? (
-                <button onClick={() => setExpandedId(isExpanded ? null : doc.id)} style={{ display: "inline-flex", alignItems: "center", gap: 6, background: "#3B82F6", color: "#fff", padding: "7px 14px", borderRadius: 8, border: "none", cursor: "pointer", fontWeight: 700, fontSize: 12.5 }}>{Ic.upload(12, "#fff")} {isExpanded ? "Hide" : "View"}</button>
+                <button onClick={() => setExpandedId(isExpanded ? null : doc.id)} style={{ display: "inline-flex", alignItems: "center", gap: 6, background: "#3B82F6", color: "#fff", padding: "7px 14px", borderRadius: 8, border: "none", cursor: "pointer", fontWeight: 700, fontSize: "var(--fs-12-5)" }}>{Ic.upload(12, "#fff")} {isExpanded ? "Hide" : "View"}</button>
               ) : link ? (
-                <a href={link} target="_blank" rel="noopener noreferrer" style={{ display: "inline-flex", alignItems: "center", gap: 6, background: "#3B82F6", color: "#fff", padding: "7px 14px", borderRadius: 8, textDecoration: "none", fontWeight: 700, fontSize: 12.5 }}>{Ic.link(12, "#fff")} Open</a>
+                <a href={link} target="_blank" rel="noopener noreferrer" style={{ display: "inline-flex", alignItems: "center", gap: 6, background: "#3B82F6", color: "#fff", padding: "7px 14px", borderRadius: 8, textDecoration: "none", fontWeight: 700, fontSize: "var(--fs-12-5)" }}>{Ic.link(12, "#fff")} Open</a>
               ) : (
-                <div style={{ color: "rgba(255,255,255,0.25)", fontSize: 12 }}>{isAdmin ? "Not added yet — attach below" : "Coming soon"}</div>
+                <div style={{ color: "rgba(255,255,255,0.25)", fontSize: "var(--fs-12)" }}>{isAdmin ? "Not added yet — attach below" : "Coming soon"}</div>
               )}
 
               {isExpanded && file && (
@@ -879,7 +940,7 @@ function DocumentsView({ files, links, isAdmin, onUploadFile, onUpdateLink }) {
 
               {isAdmin && (
                 <div style={{ display: "flex", gap: 8, marginTop: 8, flexWrap: "wrap", alignItems: "center" }}>
-                  <label style={{ display: "flex", alignItems: "center", gap: 5, background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.12)", borderRadius: 7, padding: "6px 10px", cursor: "pointer", color: "rgba(255,255,255,0.55)", fontSize: 11.5, flexShrink: 0 }}>
+                  <label style={{ display: "flex", alignItems: "center", gap: 5, background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.12)", borderRadius: 7, padding: "6px 10px", cursor: "pointer", color: "rgba(255,255,255,0.55)", fontSize: "var(--fs-11-5)", flexShrink: 0 }}>
                     {Ic.upload(12, "rgba(255,255,255,0.5)")} {file ? "Replace file" : "Attach file"}
                     <input type="file" style={{ display: "none" }} onChange={e => { const f = e.target.files[0]; if (f) onUploadFile(doc.id, f); }} />
                   </label>
@@ -928,26 +989,26 @@ function FastTrackView({ progress, onUpdate, fullProgress }) {
   const stageCard = (num, title, subtitle, complete, unlockLabel, children) => (
     <div style={{ background: complete ? "linear-gradient(135deg, #1a1400, #2d2000)" : "rgba(255,255,255,0.04)", borderRadius: 14, padding: 16, marginBottom: 10, border: `1px solid ${complete ? "#D4AF3744" : "rgba(255,255,255,0.07)"}` }}>
       <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 12 }}>
-        <div style={{ width: 30, height: 30, borderRadius: "50%", background: complete ? "#D4AF37" : "rgba(255,255,255,0.08)", color: complete ? "#000" : "#D4AF37", display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 800, fontSize: 13, flexShrink: 0 }}>
+        <div style={{ width: 30, height: 30, borderRadius: "50%", background: complete ? "#D4AF37" : "rgba(255,255,255,0.08)", color: complete ? "#000" : "#D4AF37", display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 800, fontSize: "var(--fs-13)", flexShrink: 0 }}>
           {complete ? "✓" : num}
         </div>
         <div style={{ flex: 1 }}>
-          <div style={{ fontSize: 10, color: "#D4AF37", fontWeight: 700, letterSpacing: 1, textTransform: "uppercase" }}>Stage 0{num}</div>
-          <div style={{ fontWeight: 800, color: "#fff", fontSize: 14 }}>{title}</div>
+          <div style={{ fontSize: "var(--fs-10)", color: "#D4AF37", fontWeight: 700, letterSpacing: 1, textTransform: "uppercase" }}>Stage 0{num}</div>
+          <div style={{ fontWeight: 800, color: "#fff", fontSize: "var(--fs-14)" }}>{title}</div>
         </div>
       </div>
-      {subtitle && <div style={{ fontSize: 11.5, color: "rgba(255,255,255,0.4)", marginBottom: 12 }}>{subtitle}</div>}
+      {subtitle && <div style={{ fontSize: "var(--fs-11-5)", color: "rgba(255,255,255,0.4)", marginBottom: 12 }}>{subtitle}</div>}
       {children}
-      {complete && <div style={{ marginTop: 10, fontSize: 11, fontWeight: 700, color: "#D4AF37", background: "#D4AF3718", borderRadius: 8, padding: "6px 10px", textAlign: "center" }}>🔓 {unlockLabel}</div>}
+      {complete && <div style={{ marginTop: 10, fontSize: "var(--fs-11)", fontWeight: 700, color: "#D4AF37", background: "#D4AF3718", borderRadius: 8, padding: "6px 10px", textAlign: "center" }}>🔓 {unlockLabel}</div>}
     </div>
   );
 
   return (
-    <div style={{ maxWidth: 620, margin: "0 auto", padding: "0 16px 40px" }}>
+    <div style={{ maxWidth: "var(--mw-620)", margin: "0 auto", padding: "0 16px 40px" }}>
       <div style={{ background: "linear-gradient(135deg, #1a1400, #2d2000)", borderRadius: 16, padding: 20, marginBottom: 14, border: "1px solid #D4AF3744" }}>
         <div style={{ textAlign: "center", marginBottom: 12 }}>
-          <div style={{ fontSize: 34, fontWeight: 800, color: "#D4AF37" }}>{pct}%</div>
-          <div style={{ color: "rgba(255,255,255,0.5)", fontSize: 12 }}>through the full 3-3-30 → Certified Field Trainer path</div>
+          <div style={{ fontSize: "var(--fs-34)", fontWeight: 800, color: "#D4AF37" }}>{pct}%</div>
+          <div style={{ color: "rgba(255,255,255,0.5)", fontSize: "var(--fs-12)" }}>through the full 3-3-30 → Certified Field Trainer path</div>
         </div>
         <Bar pct={pct} color="#D4AF37" h={10} />
       </div>
@@ -955,43 +1016,43 @@ function FastTrackView({ progress, onUpdate, fullProgress }) {
       {stageCard(1, "3-3-30", "3 training sales — I do, you watch · 3 personal recruits — I do, you watch · all inside 30 days", s1Complete, "$15,000 target hit — ready for Supervised Production",
         <>
           {s1TP > 0 && (
-            <div style={{ fontSize: 12, fontWeight: 700, marginBottom: 8, color: s1TP >= 15000 ? "#10B981" : "#F59E0B" }}>
+            <div style={{ fontSize: "var(--fs-12)", fontWeight: 700, marginBottom: 8, color: s1TP >= 15000 ? "#10B981" : "#F59E0B" }}>
               🎯 {s1TP.toLocaleString()} TP toward $15,000 {s1TP >= 15000 ? "✓ Goal Met" : `(need ${(15000 - s1TP).toLocaleString()} more)`}
             </div>
           )}
-          <div style={{ fontSize: 12, fontWeight: 700, color: "#fff", marginBottom: 8 }}>💼 Training Sales ({s1SalesDone}/3)</div>
+          <div style={{ fontSize: "var(--fs-12)", fontWeight: 700, color: "#fff", marginBottom: 8 }}>💼 Training Sales ({s1SalesDone}/3)</div>
           {stage1Sales.map((sale, i) => (
             <div key={i} style={{ display: "flex", gap: 8, marginBottom: 7 }}>
-              <input value={sale?.name || ""} onChange={e => { const s = [...stage1Sales]; s[i] = { ...s[i], name: e.target.value }; set("stage1Sales", s); }} placeholder="Client name" style={{ flex: 2, background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 7, padding: "7px 10px", color: "#fff", fontSize: 12 }} />
-              <input value={sale?.tp || ""} type="number" onChange={e => { const s = [...stage1Sales]; s[i] = { ...s[i], tp: e.target.value }; set("stage1Sales", s); }} placeholder="TP" style={{ flex: 1, background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 7, padding: "7px 10px", color: "#D4AF37", fontSize: 12, fontWeight: 700 }} />
+              <input value={sale?.name || ""} onChange={e => { const s = [...stage1Sales]; s[i] = { ...s[i], name: e.target.value }; set("stage1Sales", s); }} placeholder="Client name" style={{ flex: 2, background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 7, padding: "7px 10px", color: "#fff", fontSize: "var(--fs-12)" }} />
+              <input value={sale?.tp || ""} type="number" onChange={e => { const s = [...stage1Sales]; s[i] = { ...s[i], tp: e.target.value }; set("stage1Sales", s); }} placeholder="TP" style={{ flex: 1, background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 7, padding: "7px 10px", color: "#D4AF37", fontSize: "var(--fs-12)", fontWeight: 700 }} />
             </div>
           ))}
-          <div style={{ fontSize: 12, fontWeight: 700, color: "#fff", margin: "10px 0 8px" }}>👥 Personal Recruits ({s1RecruitsDone}/3)</div>
+          <div style={{ fontSize: "var(--fs-12)", fontWeight: 700, color: "#fff", margin: "10px 0 8px" }}>👥 Personal Recruits ({s1RecruitsDone}/3)</div>
           {stage1Recruits.map((rec, i) => (
             <div key={i} style={{ display: "flex", gap: 8, marginBottom: 7 }}>
-              <input value={rec?.name || ""} onChange={e => { const r = [...stage1Recruits]; r[i] = { ...r[i], name: e.target.value }; set("stage1Recruits", r); }} placeholder="Recruit name" style={{ flex: 2, background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 7, padding: "7px 10px", color: "#fff", fontSize: 12 }} />
-              <input value={rec?.pfa || ""} onChange={e => { const r = [...stage1Recruits]; r[i] = { ...r[i], pfa: e.target.value }; set("stage1Recruits", r); }} placeholder="PFA#" style={{ flex: 1, background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 7, padding: "7px 10px", color: "#D4AF37", fontSize: 12, fontWeight: 700 }} />
+              <input value={rec?.name || ""} onChange={e => { const r = [...stage1Recruits]; r[i] = { ...r[i], name: e.target.value }; set("stage1Recruits", r); }} placeholder="Recruit name" style={{ flex: 2, background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 7, padding: "7px 10px", color: "#fff", fontSize: "var(--fs-12)" }} />
+              <input value={rec?.pfa || ""} onChange={e => { const r = [...stage1Recruits]; r[i] = { ...r[i], pfa: e.target.value }; set("stage1Recruits", r); }} placeholder="PFA#" style={{ flex: 1, background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 7, padding: "7px 10px", color: "#D4AF37", fontSize: "var(--fs-12)", fontWeight: 700 }} />
             </div>
           ))}
 
           <div style={{ marginTop: 16, paddingTop: 14, borderTop: "1px dashed rgba(255,255,255,0.12)" }}>
-            <div style={{ fontSize: 10, color: "#D4AF37", fontWeight: 700, letterSpacing: 1, textTransform: "uppercase", marginBottom: 3 }}>Stage 01 Bonus</div>
-            <div style={{ fontWeight: 800, color: "#fff", fontSize: 13, marginBottom: 4 }}>2-2-30</div>
-            <div style={{ fontSize: 11.5, color: "rgba(255,255,255,0.4)", marginBottom: 10 }}>Go for 2 more training sales and 2 more recruits to hit contract level 60% PFD.</div>
+            <div style={{ fontSize: "var(--fs-10)", color: "#D4AF37", fontWeight: 700, letterSpacing: 1, textTransform: "uppercase", marginBottom: 3 }}>Stage 01 Bonus</div>
+            <div style={{ fontWeight: 800, color: "#fff", fontSize: "var(--fs-13)", marginBottom: 4 }}>2-2-30</div>
+            <div style={{ fontSize: "var(--fs-11-5)", color: "rgba(255,255,255,0.4)", marginBottom: 10 }}>Go for 2 more training sales and 2 more recruits to hit contract level 60% PFD.</div>
 
-            <div style={{ fontSize: 12, fontWeight: 700, color: "#fff", marginBottom: 8 }}>💼 Training Sales ({s1BonusSalesDone}/2)</div>
+            <div style={{ fontSize: "var(--fs-12)", fontWeight: 700, color: "#fff", marginBottom: 8 }}>💼 Training Sales ({s1BonusSalesDone}/2)</div>
             {stage1BonusSales.map((sale, i) => (
               <div key={i} style={{ display: "flex", gap: 8, marginBottom: 7 }}>
-                <input value={sale?.name || ""} onChange={e => { const s = [...stage1BonusSales]; s[i] = { ...s[i], name: e.target.value }; set("stage1BonusSales", s); }} placeholder="Client name" style={{ flex: 2, background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 7, padding: "7px 10px", color: "#fff", fontSize: 12 }} />
-                <input value={sale?.tp || ""} type="number" onChange={e => { const s = [...stage1BonusSales]; s[i] = { ...s[i], tp: e.target.value }; set("stage1BonusSales", s); }} placeholder="TP" style={{ flex: 1, background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 7, padding: "7px 10px", color: "#D4AF37", fontSize: 12, fontWeight: 700 }} />
+                <input value={sale?.name || ""} onChange={e => { const s = [...stage1BonusSales]; s[i] = { ...s[i], name: e.target.value }; set("stage1BonusSales", s); }} placeholder="Client name" style={{ flex: 2, background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 7, padding: "7px 10px", color: "#fff", fontSize: "var(--fs-12)" }} />
+                <input value={sale?.tp || ""} type="number" onChange={e => { const s = [...stage1BonusSales]; s[i] = { ...s[i], tp: e.target.value }; set("stage1BonusSales", s); }} placeholder="TP" style={{ flex: 1, background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 7, padding: "7px 10px", color: "#D4AF37", fontSize: "var(--fs-12)", fontWeight: 700 }} />
               </div>
             ))}
 
-            <div style={{ fontSize: 12, fontWeight: 700, color: "#fff", margin: "10px 0 8px" }}>👥 Personal Recruits ({s1BonusRecruitsDone}/2)</div>
+            <div style={{ fontSize: "var(--fs-12)", fontWeight: 700, color: "#fff", margin: "10px 0 8px" }}>👥 Personal Recruits ({s1BonusRecruitsDone}/2)</div>
             {stage1BonusRecruits.map((rec, i) => (
               <div key={i} style={{ display: "flex", gap: 8, marginBottom: 7 }}>
-                <input value={rec?.name || ""} onChange={e => { const r = [...stage1BonusRecruits]; r[i] = { ...r[i], name: e.target.value }; set("stage1BonusRecruits", r); }} placeholder="Recruit name" style={{ flex: 2, background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 7, padding: "7px 10px", color: "#fff", fontSize: 12 }} />
-                <input value={rec?.pfa || ""} onChange={e => { const r = [...stage1BonusRecruits]; r[i] = { ...r[i], pfa: e.target.value }; set("stage1BonusRecruits", r); }} placeholder="PFA#" style={{ flex: 1, background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 7, padding: "7px 10px", color: "#D4AF37", fontSize: 12, fontWeight: 700 }} />
+                <input value={rec?.name || ""} onChange={e => { const r = [...stage1BonusRecruits]; r[i] = { ...r[i], name: e.target.value }; set("stage1BonusRecruits", r); }} placeholder="Recruit name" style={{ flex: 2, background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 7, padding: "7px 10px", color: "#fff", fontSize: "var(--fs-12)" }} />
+                <input value={rec?.pfa || ""} onChange={e => { const r = [...stage1BonusRecruits]; r[i] = { ...r[i], pfa: e.target.value }; set("stage1BonusRecruits", r); }} placeholder="PFA#" style={{ flex: 1, background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 7, padding: "7px 10px", color: "#D4AF37", fontSize: "var(--fs-12)", fontWeight: 700 }} />
               </div>
             ))}
           </div>
@@ -1000,18 +1061,18 @@ function FastTrackView({ progress, onUpdate, fullProgress }) {
 
       {stageCard(2, "Supervised Production", "3 additional sales — you do, I watch · pass the certification exam", s2Complete, "Cleared to sell independently",
         <>
-          <div style={{ fontSize: 12, fontWeight: 700, color: "#fff", marginBottom: 8 }}>💼 Additional Sales ({s2SalesDone}/3){s2TP > 0 && <span style={{ color: s2TP >= 9000 ? "#10B981" : "#F59E0B", fontWeight: 700 }}> · {s2TP.toLocaleString()} TP {s2TP >= 9000 ? "✓" : `(need ${(9000 - s2TP).toLocaleString()} more)`}</span>}</div>
+          <div style={{ fontSize: "var(--fs-12)", fontWeight: 700, color: "#fff", marginBottom: 8 }}>💼 Additional Sales ({s2SalesDone}/3){s2TP > 0 && <span style={{ color: s2TP >= 9000 ? "#10B981" : "#F59E0B", fontWeight: 700 }}> · {s2TP.toLocaleString()} TP {s2TP >= 9000 ? "✓" : `(need ${(9000 - s2TP).toLocaleString()} more)`}</span>}</div>
           {stage2Sales.map((sale, i) => (
             <div key={i} style={{ display: "flex", gap: 8, marginBottom: 7 }}>
-              <input value={sale?.name || ""} onChange={e => { const s = [...stage2Sales]; s[i] = { ...s[i], name: e.target.value }; set("stage2Sales", s); }} placeholder="Client name" style={{ flex: 2, background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 7, padding: "7px 10px", color: "#fff", fontSize: 12 }} />
-              <input value={sale?.tp || ""} type="number" onChange={e => { const s = [...stage2Sales]; s[i] = { ...s[i], tp: e.target.value }; set("stage2Sales", s); }} placeholder="TP" style={{ flex: 1, background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 7, padding: "7px 10px", color: "#D4AF37", fontSize: 12, fontWeight: 700 }} />
+              <input value={sale?.name || ""} onChange={e => { const s = [...stage2Sales]; s[i] = { ...s[i], name: e.target.value }; set("stage2Sales", s); }} placeholder="Client name" style={{ flex: 2, background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 7, padding: "7px 10px", color: "#fff", fontSize: "var(--fs-12)" }} />
+              <input value={sale?.tp || ""} type="number" onChange={e => { const s = [...stage2Sales]; s[i] = { ...s[i], tp: e.target.value }; set("stage2Sales", s); }} placeholder="TP" style={{ flex: 1, background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 7, padding: "7px 10px", color: "#D4AF37", fontSize: "var(--fs-12)", fontWeight: 700 }} />
             </div>
           ))}
           <div onClick={() => set("stage2Exam", !stage2Exam)} style={{ display: "flex", alignItems: "center", gap: 10, marginTop: 8, cursor: "pointer" }}>
             <div style={{ width: 20, height: 20, borderRadius: 5, border: `2px solid ${stage2Exam ? "#D4AF37" : "rgba(255,255,255,0.2)"}`, background: stage2Exam ? "#D4AF37" : "transparent", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
               {stage2Exam && Ic.check(11, "#000")}
             </div>
-            <span style={{ color: stage2Exam ? "rgba(255,255,255,0.4)" : "rgba(255,255,255,0.85)", fontSize: 13 }}>Certification exam passed</span>
+            <span style={{ color: stage2Exam ? "rgba(255,255,255,0.4)" : "rgba(255,255,255,0.85)", fontSize: "var(--fs-13)" }}>Certification exam passed</span>
           </div>
         </>
       )}
@@ -1027,13 +1088,13 @@ function FastTrackView({ progress, onUpdate, fullProgress }) {
               <div style={{ width: 20, height: 20, borderRadius: 5, border: `2px solid ${val ? "#D4AF37" : "rgba(255,255,255,0.2)"}`, background: val ? "#D4AF37" : "transparent", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
                 {val && Ic.check(11, "#000")}
               </div>
-              <span style={{ color: val ? "rgba(255,255,255,0.4)" : "rgba(255,255,255,0.85)", fontSize: 13 }}>{label}</span>
+              <span style={{ color: val ? "rgba(255,255,255,0.4)" : "rgba(255,255,255,0.85)", fontSize: "var(--fs-13)" }}>{label}</span>
             </div>
           ))}
         </>
       )}
 
-      <div style={{ textAlign: "center", padding: "10px 4px", color: "rgba(255,255,255,0.3)", fontSize: 11.5, fontStyle: "italic" }}>
+      <div style={{ textAlign: "center", padding: "10px 4px", color: "rgba(255,255,255,0.3)", fontSize: "var(--fs-11-5)", fontStyle: "italic" }}>
         "You are not a leader because you produce. You are a leader because someone else can now produce because of you."
       </div>
     </div>
@@ -1061,9 +1122,9 @@ function AgentPortal({ agent, videos, files, links, calendlyLinks, isAdmin, isTr
     <div>
       {(isAdmin || isTrainer) && (
         <div style={{ padding: "10px 14px", display: "flex", alignItems: "center", gap: 10, borderBottom: "1px solid rgba(255,255,255,0.07)" }}>
-          <button onClick={onBack} style={{ background: "rgba(255,255,255,0.07)", border: "none", color: "#fff", borderRadius: 8, padding: "7px 12px", cursor: "pointer", fontSize: 12 }}>← Back</button>
+          <button onClick={onBack} style={{ background: "rgba(255,255,255,0.07)", border: "none", color: "#fff", borderRadius: 8, padding: "7px 12px", cursor: "pointer", fontSize: "var(--fs-12)" }}>← Back</button>
           <Avatar name={currentAgent.name} size={30} />
-          <div style={{ fontWeight: 700, color: "#fff", fontSize: 13 }}>{currentAgent.name}</div>
+          <div style={{ fontWeight: 700, color: "#fff", fontSize: "var(--fs-13)" }}>{currentAgent.name}</div>
         </div>
       )}
 
@@ -1071,16 +1132,16 @@ function AgentPortal({ agent, videos, files, links, calendlyLinks, isAdmin, isTr
         <div style={{ padding: "8px 14px", borderBottom: "1px solid rgba(255,255,255,0.07)" }}>
           {(isAdmin || isTrainer) ? (
             <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 8 }}>
-              <label style={{ fontSize: 11, color: "rgba(255,255,255,0.35)", flexShrink: 0 }}>Fast Track Start Date:</label>
+              <label style={{ fontSize: "var(--fs-11)", color: "rgba(255,255,255,0.35)", flexShrink: 0 }}>Fast Track Start Date:</label>
               <input
                 type="date"
                 value={new Date(currentAgent.startDate).toISOString().slice(0, 10)}
                 onChange={e => { if (e.target.value) onUpdateStartDate(currentAgent.id, new Date(e.target.value + "T00:00:00").toISOString()); }}
-                style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.15)", borderRadius: 7, padding: "5px 9px", color: "#fff", fontSize: 12 }}
+                style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.15)", borderRadius: 7, padding: "5px 9px", color: "#fff", fontSize: "var(--fs-12)" }}
               />
             </div>
           ) : (
-            <div style={{ fontSize: 11, color: "rgba(255,255,255,0.35)", marginBottom: 8 }}>
+            <div style={{ fontSize: "var(--fs-11)", color: "rgba(255,255,255,0.35)", marginBottom: 8 }}>
               Fast Track Start Date: <span style={{ color: "#fff", fontWeight: 700 }}>{new Date(currentAgent.startDate).toLocaleDateString(undefined, { month: "short", day: "numeric", year: "numeric" })}</span>
             </div>
           )}
@@ -1092,8 +1153,8 @@ function AgentPortal({ agent, videos, files, links, calendlyLinks, isAdmin, isTr
             return (
               <div style={{ marginTop: 12 }}>
                 <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 6 }}>
-                  <span style={{ fontSize: 11, color: "rgba(255,255,255,0.4)", textTransform: "uppercase", letterSpacing: 1 }}>Fast Track Progression</span>
-                  <span style={{ fontSize: 12, fontWeight: 800, color: "#D4AF37" }}>{combinedPct}%</span>
+                  <span style={{ fontSize: "var(--fs-11)", color: "rgba(255,255,255,0.4)", textTransform: "uppercase", letterSpacing: 1 }}>Fast Track Progression</span>
+                  <span style={{ fontSize: "var(--fs-12)", fontWeight: 800, color: "#D4AF37" }}>{combinedPct}%</span>
                 </div>
                 <Bar pct={combinedPct} color="#D4AF37" h={5} />
               </div>
@@ -1107,7 +1168,7 @@ function AgentPortal({ agent, videos, files, links, calendlyLinks, isAdmin, isTr
           const pct = getPhaseProgress(ph, progress);
           const isActive = activePhase === i;
           return (
-            <button key={ph.id} onClick={() => setActivePhase(i)} style={{ flexShrink: 0, padding: "6px 11px", borderRadius: 18, border: `1.5px solid ${isActive ? ph.color : "rgba(255,255,255,0.09)"}`, background: isActive ? `${ph.color}20` : "transparent", color: isActive ? ph.color : "rgba(255,255,255,0.45)", cursor: "pointer", fontSize: 11, fontWeight: isActive ? 700 : 500, display: "flex", alignItems: "center", gap: 4 }}>
+            <button key={ph.id} onClick={() => setActivePhase(i)} style={{ flexShrink: 0, padding: "6px 11px", borderRadius: 18, border: `1.5px solid ${isActive ? ph.color : "rgba(255,255,255,0.09)"}`, background: isActive ? `${ph.color}20` : "transparent", color: isActive ? ph.color : "rgba(255,255,255,0.45)", cursor: "pointer", fontSize: "var(--fs-11)", fontWeight: isActive ? 700 : 500, display: "flex", alignItems: "center", gap: 4 }}>
               <span>{ph.emoji}</span><span>{ph.label}</span>{pct === 100 && <span style={{ color: ph.color }}>✓</span>}
             </button>
           );
@@ -1194,7 +1255,7 @@ function AdminDashboard({ agents, trainers, onSelectAgent, onAddAgent, onDeleteA
   const uniqueTrainers = [...new Set(myAgents.map(a => a.fieldTrainer).filter(Boolean))];
 
   return (
-    <div style={{ maxWidth: 820, margin: "0 auto", padding: "0 14px 40px" }}>
+    <div style={{ maxWidth: "var(--mw-820)", margin: "0 auto", padding: "0 14px 40px" }}>
       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: 8, marginBottom: 16 }}>
         {[
           { label: "Total Agents", value: totalAgents, color: "#D4AF37" },
@@ -1203,8 +1264,8 @@ function AdminDashboard({ agents, trainers, onSelectAgent, onAddAgent, onDeleteA
           { label: "⚠️ Inactive", value: inactive, color: "#F59E0B" },
         ].map((s, i) => (
           <div key={i} style={{ background: "rgba(255,255,255,0.04)", borderRadius: 12, padding: "12px 14px", border: `1px solid ${s.color}22`, textAlign: "center" }}>
-            <div style={{ fontSize: 22, fontWeight: 800, color: s.color }}>{s.value}</div>
-            <div style={{ fontSize: 11, color: "rgba(255,255,255,0.4)", marginTop: 2 }}>{s.label}</div>
+            <div style={{ fontSize: "var(--fs-22)", fontWeight: 800, color: s.color }}>{s.value}</div>
+            <div style={{ fontSize: "var(--fs-11)", color: "rgba(255,255,255,0.4)", marginTop: 2 }}>{s.label}</div>
           </div>
         ))}
       </div>
@@ -1212,9 +1273,9 @@ function AdminDashboard({ agents, trainers, onSelectAgent, onAddAgent, onDeleteA
       <div style={{ display: "flex", gap: 8, marginBottom: 10, flexWrap: "wrap" }}>
         <div style={{ flex: 1, minWidth: 160, display: "flex", alignItems: "center", gap: 8, background: "rgba(255,255,255,0.06)", borderRadius: 10, padding: "8px 12px", border: "1px solid rgba(255,255,255,0.1)" }}>
           {Ic.search(14, "rgba(255,255,255,0.3)")}
-          <input value={search} onChange={e => setSearch(e.target.value)} placeholder="Search agents..." style={{ background: "none", border: "none", color: "#fff", fontSize: 13, outline: "none", flex: 1 }} />
+          <input value={search} onChange={e => setSearch(e.target.value)} placeholder="Search agents..." style={{ background: "none", border: "none", color: "#fff", fontSize: "var(--fs-13)", outline: "none", flex: 1 }} />
         </div>
-        <select value={filterStatus} onChange={e => setFilterStatus(e.target.value)} style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 10, padding: "8px 12px", color: "#fff", fontSize: 12, cursor: "pointer" }}>
+        <select value={filterStatus} onChange={e => setFilterStatus(e.target.value)} style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 10, padding: "8px 12px", color: "#fff", fontSize: "var(--fs-12)", cursor: "pointer" }}>
           <option value="all">All Status</option>
           <option value="ontrack">🟢 On Track</option>
           <option value="atrisk">🔴 At Risk</option>
@@ -1222,25 +1283,25 @@ function AdminDashboard({ agents, trainers, onSelectAgent, onAddAgent, onDeleteA
           <option value="complete">🏆 Complete</option>
         </select>
         {!isTrainerView && uniqueTrainers.length > 0 && (
-          <select value={filterTrainer} onChange={e => setFilterTrainer(e.target.value)} style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 10, padding: "8px 12px", color: "#fff", fontSize: 12, cursor: "pointer" }}>
+          <select value={filterTrainer} onChange={e => setFilterTrainer(e.target.value)} style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 10, padding: "8px 12px", color: "#fff", fontSize: "var(--fs-12)", cursor: "pointer" }}>
             <option value="all">All Trainers</option>
             {uniqueTrainers.map(t => <option key={t} value={t}>{t}</option>)}
           </select>
         )}
-        <select value={sortBy} onChange={e => setSortBy(e.target.value)} style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 10, padding: "8px 12px", color: "#fff", fontSize: 12, cursor: "pointer" }}>
+        <select value={sortBy} onChange={e => setSortBy(e.target.value)} style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 10, padding: "8px 12px", color: "#fff", fontSize: "var(--fs-12)", cursor: "pointer" }}>
           <option value="name">Sort: Name</option>
           <option value="pct">Sort: % Complete</option>
           <option value="days">Sort: Days Left</option>
           <option value="recent">Sort: Newest</option>
         </select>
-        <button onClick={() => setShowAdd(s => !s)} style={{ display: "flex", alignItems: "center", gap: 5, background: "#D4AF37", color: "#000", border: "none", borderRadius: 10, padding: "8px 14px", fontWeight: 700, cursor: "pointer", fontSize: 13, flexShrink: 0 }}>
+        <button onClick={() => setShowAdd(s => !s)} style={{ display: "flex", alignItems: "center", gap: 5, background: "#D4AF37", color: "#000", border: "none", borderRadius: 10, padding: "8px 14px", fontWeight: 700, cursor: "pointer", fontSize: "var(--fs-13)", flexShrink: 0 }}>
           {Ic.plus(14, "#000")} Add Agent
         </button>
       </div>
 
       {showAdd && (
         <div style={{ background: "rgba(255,255,255,0.05)", borderRadius: 14, padding: 16, marginBottom: 14, border: "1px solid rgba(255,255,255,0.1)" }}>
-          <div style={{ fontWeight: 700, color: "#D4AF37", fontSize: 13, marginBottom: 12 }}>New Agent Registration</div>
+          <div style={{ fontWeight: 700, color: "#D4AF37", fontSize: "var(--fs-13)", marginBottom: 12 }}>New Agent Registration</div>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8, marginBottom: 10 }}>
             {[
               ["Full Name *", "name", "text"],
@@ -1250,22 +1311,22 @@ function AdminDashboard({ agents, trainers, onSelectAgent, onAddAgent, onDeleteA
               ["Field Trainer / CFT", "fieldTrainer", "text"],
             ].map(([placeholder, field, type]) => (
               <input key={field} value={form[field]} type={type} onChange={e => setForm(f => ({ ...f, [field]: e.target.value }))} placeholder={placeholder}
-                style={{ background: "rgba(255,255,255,0.07)", border: "1px solid rgba(255,255,255,0.12)", borderRadius: 8, padding: "9px 11px", color: "#fff", fontSize: 13, gridColumn: field === "fieldTrainer" ? "1 / -1" : "auto" }} />
+                style={{ background: "rgba(255,255,255,0.07)", border: "1px solid rgba(255,255,255,0.12)", borderRadius: 8, padding: "9px 11px", color: "#fff", fontSize: "var(--fs-13)", gridColumn: field === "fieldTrainer" ? "1 / -1" : "auto" }} />
             ))}
           </div>
           <div style={{ display: "flex", gap: 8 }}>
-            <button onClick={handleAdd} style={{ flex: 1, background: "#D4AF37", color: "#000", border: "none", borderRadius: 8, padding: "10px 0", fontWeight: 700, cursor: "pointer", fontSize: 13 }}>Add Agent</button>
-            <button onClick={() => setShowAdd(false)} style={{ background: "rgba(255,255,255,0.07)", color: "#fff", border: "none", borderRadius: 8, padding: "10px 14px", cursor: "pointer", fontSize: 13 }}>Cancel</button>
+            <button onClick={handleAdd} style={{ flex: 1, background: "#D4AF37", color: "#000", border: "none", borderRadius: 8, padding: "10px 0", fontWeight: 700, cursor: "pointer", fontSize: "var(--fs-13)" }}>Add Agent</button>
+            <button onClick={() => setShowAdd(false)} style={{ background: "rgba(255,255,255,0.07)", color: "#fff", border: "none", borderRadius: 8, padding: "10px 14px", cursor: "pointer", fontSize: "var(--fs-13)" }}>Cancel</button>
           </div>
         </div>
       )}
 
-      <div style={{ fontSize: 12, color: "rgba(255,255,255,0.3)", marginBottom: 10 }}>{filtered.length} of {totalAgents} agent{totalAgents !== 1 ? "s" : ""}</div>
+      <div style={{ fontSize: "var(--fs-12)", color: "rgba(255,255,255,0.3)", marginBottom: 10 }}>{filtered.length} of {totalAgents} agent{totalAgents !== 1 ? "s" : ""}</div>
 
       {filtered.length === 0 && (
         <div style={{ textAlign: "center", padding: 50, color: "rgba(255,255,255,0.25)" }}>
-          <div style={{ fontSize: 36, marginBottom: 10 }}>👥</div>
-          <div style={{ fontSize: 14, fontWeight: 600 }}>{totalAgents === 0 ? "No agents yet" : "No agents match your filters"}</div>
+          <div style={{ fontSize: "var(--fs-36)", marginBottom: 10 }}>👥</div>
+          <div style={{ fontSize: "var(--fs-14)", fontWeight: 600 }}>{totalAgents === 0 ? "No agents yet" : "No agents match your filters"}</div>
         </div>
       )}
 
@@ -1282,22 +1343,22 @@ function AdminDashboard({ agents, trainers, onSelectAgent, onAddAgent, onDeleteA
             <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 10 }}>
               <Avatar name={agent.name} size={42} />
               <div style={{ flex: 1, minWidth: 0 }}>
-                <div style={{ fontWeight: 700, fontSize: 14, color: "#fff", marginBottom: 1 }}>{agent.name}</div>
-                <div style={{ fontSize: 11, color: "rgba(255,255,255,0.4)" }}>
+                <div style={{ fontWeight: 700, fontSize: "var(--fs-14)", color: "#fff", marginBottom: 1 }}>{agent.name}</div>
+                <div style={{ fontSize: "var(--fs-11)", color: "rgba(255,255,255,0.4)" }}>
                   {agent.fieldTrainer ? `CFT: ${agent.fieldTrainer}` : agent.email || "No email"}
                   {agent.pfaNumber ? ` · PFA# ${agent.pfaNumber}` : ""}
                 </div>
               </div>
               <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 4 }}>
-                <div style={{ fontSize: 20, fontWeight: 800, color: "#D4AF37" }}>{pct}%</div>
-                <div style={{ fontSize: 10, fontWeight: 700, color: statusColor, background: `${statusColor}18`, padding: "2px 7px", borderRadius: 99 }}>{statusLabel}</div>
+                <div style={{ fontSize: "var(--fs-20)", fontWeight: 800, color: "#D4AF37" }}>{pct}%</div>
+                <div style={{ fontSize: "var(--fs-10)", fontWeight: 700, color: statusColor, background: `${statusColor}18`, padding: "2px 7px", borderRadius: 99 }}>{statusLabel}</div>
               </div>
               {confirmDeleteId === agent.id ? (
                 <div onClick={e => e.stopPropagation()} style={{ display: "flex", gap: 4, flexShrink: 0 }}>
                   <button onClick={() => { onDeleteAgent(agent.id); setConfirmDeleteId(null); }}
-                    style={{ background: "#EF4444", border: "none", borderRadius: 6, padding: "6px 9px", cursor: "pointer", color: "#fff", fontSize: 11, fontWeight: 700 }}>Delete</button>
+                    style={{ background: "#EF4444", border: "none", borderRadius: 6, padding: "6px 9px", cursor: "pointer", color: "#fff", fontSize: "var(--fs-11)", fontWeight: 700 }}>Delete</button>
                   <button onClick={() => setConfirmDeleteId(null)}
-                    style={{ background: "rgba(255,255,255,0.08)", border: "none", borderRadius: 6, padding: "6px 9px", cursor: "pointer", color: "rgba(255,255,255,0.6)", fontSize: 11 }}>Cancel</button>
+                    style={{ background: "rgba(255,255,255,0.08)", border: "none", borderRadius: 6, padding: "6px 9px", cursor: "pointer", color: "rgba(255,255,255,0.6)", fontSize: "var(--fs-11)" }}>Cancel</button>
                 </div>
               ) : (
                 <button onClick={e => { e.stopPropagation(); setConfirmDeleteId(agent.id); }}
@@ -1312,11 +1373,11 @@ function AdminDashboard({ agents, trainers, onSelectAgent, onAddAgent, onDeleteA
                 {PHASES.slice(1).map(ph => {
                   const phPct = getPhaseProgress(ph, agent.progress || {});
                   return phPct === 100 ? (
-                    <span key={ph.id} style={{ fontSize: 10, color: ph.color, background: `${ph.color}18`, padding: "2px 6px", borderRadius: 99 }}>{ph.emoji} {ph.label}</span>
+                    <span key={ph.id} style={{ fontSize: "var(--fs-10)", color: ph.color, background: `${ph.color}18`, padding: "2px 6px", borderRadius: 99 }}>{ph.emoji} {ph.label}</span>
                   ) : null;
                 })}
               </div>
-              {daysLeft !== null && <span style={{ fontSize: 11, color: sc, fontWeight: 700, flexShrink: 0 }}>{daysLeft}d left</span>}
+              {daysLeft !== null && <span style={{ fontSize: "var(--fs-11)", color: sc, fontWeight: 700, flexShrink: 0 }}>{daysLeft}d left</span>}
             </div>
           </div>
         );
@@ -1448,21 +1509,22 @@ export default function App() {
 
   const shell = (children) => (
     <div style={{ minHeight: "100vh", background: "linear-gradient(160deg, #080d1a 0%, #0c1525 60%, #080d1a 100%)", color: "#fff", fontFamily: "'Inter', system-ui, sans-serif" }}>
+      <style>{RESPONSIVE_CSS}</style>
       <div style={{ borderBottom: "1px solid rgba(255,255,255,0.07)", padding: "12px 18px", display: "flex", alignItems: "center", justifyContent: "space-between", position: "sticky", top: 0, background: "rgba(8,13,26,0.97)", backdropFilter: "blur(14px)", zIndex: 100 }}>
         <div style={{ display: "flex", alignItems: "center", gap: 9 }}>
           <div style={{ width: 30, height: 30, borderRadius: 8, background: "linear-gradient(135deg, #0B1B36, #D4AF37)", display: "flex", alignItems: "center", justifyContent: "center" }}>
             {Ic.shield(15, "#fff")}
           </div>
           <div>
-            <div style={{ fontWeight: 800, fontSize: 13, color: "#fff", letterSpacing: 0.3 }}>Victory</div>
-            <div style={{ fontSize: 9, color: "#D4AF37", letterSpacing: 2, textTransform: "uppercase" }}>Agent Training Portal</div>
+            <div style={{ fontWeight: 800, fontSize: "var(--fs-13)", color: "#fff", letterSpacing: 0.3 }}>Victory</div>
+            <div style={{ fontSize: "var(--fs-9)", color: "#D4AF37", letterSpacing: 2, textTransform: "uppercase" }}>Agent Training Portal</div>
           </div>
         </div>
         {view !== "login" && view !== "loading" && (
           <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-            {view === "trainer" && <span style={{ fontSize: 11, color: "rgba(255,255,255,0.4)" }}>CFT: {currentTrainer}</span>}
-            {view === "admin" && <span style={{ fontSize: 11, color: "rgba(255,255,255,0.4)" }}>Admin: {currentAdmin}</span>}
-            <button onClick={() => { setView("login"); setSelectedAgent(null); setPin(""); setAdminName(""); setCurrentAdmin(""); setAgentInput(""); setTrainerName(""); setTrainerPin(""); setCurrentTrainer(""); }} style={{ background: "rgba(255,255,255,0.07)", border: "none", color: "rgba(255,255,255,0.5)", borderRadius: 8, padding: "6px 12px", cursor: "pointer", fontSize: 12 }}>Sign Out</button>
+            {view === "trainer" && <span style={{ fontSize: "var(--fs-11)", color: "rgba(255,255,255,0.4)" }}>CFT: {currentTrainer}</span>}
+            {view === "admin" && <span style={{ fontSize: "var(--fs-11)", color: "rgba(255,255,255,0.4)" }}>Admin: {currentAdmin}</span>}
+            <button onClick={() => { setView("login"); setSelectedAgent(null); setPin(""); setAdminName(""); setCurrentAdmin(""); setAgentInput(""); setTrainerName(""); setTrainerPin(""); setCurrentTrainer(""); }} style={{ background: "rgba(255,255,255,0.07)", border: "none", color: "rgba(255,255,255,0.5)", borderRadius: 8, padding: "6px 12px", cursor: "pointer", fontSize: "var(--fs-12)" }}>Sign Out</button>
           </div>
         )}
       </div>
@@ -1473,16 +1535,16 @@ export default function App() {
   if (view === "loading") return shell(<div style={{ textAlign: "center", paddingTop: 80, color: "rgba(255,255,255,0.3)" }}>Loading...</div>);
 
   if (view === "login") return shell(
-    <div style={{ maxWidth: 440, margin: "32px auto", padding: "0 18px" }}>
+    <div style={{ maxWidth: "var(--mw-440)", margin: "32px auto", padding: "0 18px" }}>
       <div style={{ textAlign: "center", marginBottom: 26 }}>
-        <div style={{ fontSize: 46, marginBottom: 10 }}>🏆</div>
-        <div style={{ fontSize: 22, fontWeight: 800, color: "#fff" }}>Dream the Change</div>
-        <div style={{ fontSize: 12, color: "rgba(255,255,255,0.35)", marginTop: 4 }}>Team Victory · Agent Training Portal</div>
+        <div style={{ fontSize: "var(--fs-46)", marginBottom: 10 }}>🏆</div>
+        <div style={{ fontSize: "var(--fs-22)", fontWeight: 800, color: "#fff" }}>Dream the Change</div>
+        <div style={{ fontSize: "var(--fs-12)", color: "rgba(255,255,255,0.35)", marginTop: 4 }}>Team Victory · Agent Training Portal</div>
       </div>
 
       <div style={{ display: "flex", background: "rgba(255,255,255,0.05)", borderRadius: 12, padding: 4, marginBottom: 18, gap: 4 }}>
         {[["admin", "Admin"], ["trainer", "Trainer / CFT"], ["agent", "Agent"]].map(([mode, label]) => (
-          <button key={mode} onClick={() => setLoginMode(mode)} style={{ flex: 1, padding: "8px 0", borderRadius: 9, border: "none", cursor: "pointer", fontSize: 12, fontWeight: 600, background: loginMode === mode ? "#D4AF37" : "transparent", color: loginMode === mode ? "#000" : "rgba(255,255,255,0.4)" }}>
+          <button key={mode} onClick={() => setLoginMode(mode)} style={{ flex: 1, padding: "8px 0", borderRadius: 9, border: "none", cursor: "pointer", fontSize: "var(--fs-12)", fontWeight: 600, background: loginMode === mode ? "#D4AF37" : "transparent", color: loginMode === mode ? "#000" : "rgba(255,255,255,0.4)" }}>
             {label}
           </button>
         ))}
@@ -1490,44 +1552,44 @@ export default function App() {
 
       {loginMode === "admin" && (
         <div style={{ background: "rgba(212,175,55,0.06)", borderRadius: 16, padding: 20, border: "1px solid rgba(212,175,55,0.18)" }}>
-          <div style={{ fontWeight: 700, fontSize: 14, color: "#D4AF37", marginBottom: 3, display: "flex", alignItems: "center", gap: 6 }}>{Ic.shield(14, "#D4AF37")} Admin Access</div>
-          <div style={{ fontSize: 12, color: "rgba(255,255,255,0.35)", marginBottom: 12 }}>Full access to your own roster — videos, files, Calendly links. Each admin only sees their own agents.</div>
+          <div style={{ fontWeight: 700, fontSize: "var(--fs-14)", color: "#D4AF37", marginBottom: 3, display: "flex", alignItems: "center", gap: 6 }}>{Ic.shield(14, "#D4AF37")} Admin Access</div>
+          <div style={{ fontSize: "var(--fs-12)", color: "rgba(255,255,255,0.35)", marginBottom: 12 }}>Full access to your own roster — videos, files, Calendly links. Each admin only sees their own agents.</div>
           <input value={adminName} onChange={e => setAdminName(e.target.value)} placeholder="Your full name"
-            style={{ width: "100%", background: "rgba(255,255,255,0.07)", border: `1px solid ${pinError ? "#ef4444" : "rgba(255,255,255,0.12)"}`, borderRadius: 8, padding: "9px 12px", color: "#fff", fontSize: 13, marginBottom: 8, boxSizing: "border-box" }} />
+            style={{ width: "100%", background: "rgba(255,255,255,0.07)", border: `1px solid ${pinError ? "#ef4444" : "rgba(255,255,255,0.12)"}`, borderRadius: 8, padding: "9px 12px", color: "#fff", fontSize: "var(--fs-13)", marginBottom: 8, boxSizing: "border-box" }} />
           <div style={{ display: "flex", gap: 8 }}>
             <input type="password" value={pin} onChange={e => setPin(e.target.value)} onKeyDown={e => e.key === "Enter" && handleAdminLogin()} placeholder="Admin PIN"
-              style={{ flex: 1, background: "rgba(255,255,255,0.07)", border: `1px solid ${pinError ? "#ef4444" : "rgba(255,255,255,0.12)"}`, borderRadius: 8, padding: "9px 12px", color: "#fff", fontSize: 13 }} />
-            <button onClick={handleAdminLogin} style={{ background: "#D4AF37", color: "#000", border: "none", borderRadius: 8, padding: "9px 18px", fontWeight: 700, cursor: "pointer", fontSize: 13 }}>Enter</button>
+              style={{ flex: 1, background: "rgba(255,255,255,0.07)", border: `1px solid ${pinError ? "#ef4444" : "rgba(255,255,255,0.12)"}`, borderRadius: 8, padding: "9px 12px", color: "#fff", fontSize: "var(--fs-13)" }} />
+            <button onClick={handleAdminLogin} style={{ background: "#D4AF37", color: "#000", border: "none", borderRadius: 8, padding: "9px 18px", fontWeight: 700, cursor: "pointer", fontSize: "var(--fs-13)" }}>Enter</button>
           </div>
-          {pinError && <div style={{ color: "#ef4444", fontSize: 12, marginTop: 6 }}>Name or PIN not recognized</div>}
+          {pinError && <div style={{ color: "#ef4444", fontSize: "var(--fs-12)", marginTop: 6 }}>Name or PIN not recognized</div>}
         </div>
       )}
 
       {loginMode === "trainer" && (
         <div style={{ background: "rgba(59,130,246,0.06)", borderRadius: 16, padding: 20, border: "1px solid rgba(59,130,246,0.18)" }}>
-          <div style={{ fontWeight: 700, fontSize: 14, color: "#3B82F6", marginBottom: 3, display: "flex", alignItems: "center", gap: 6 }}>{Ic.teams(14, "#3B82F6")} Trainer / CFT Access</div>
-          <div style={{ fontSize: 12, color: "rgba(255,255,255,0.35)", marginBottom: 12 }}>See and manage your assigned agents only</div>
+          <div style={{ fontWeight: 700, fontSize: "var(--fs-14)", color: "#3B82F6", marginBottom: 3, display: "flex", alignItems: "center", gap: 6 }}>{Ic.teams(14, "#3B82F6")} Trainer / CFT Access</div>
+          <div style={{ fontSize: "var(--fs-12)", color: "rgba(255,255,255,0.35)", marginBottom: 12 }}>See and manage your assigned agents only</div>
           <input value={trainerName} onChange={e => setTrainerName(e.target.value)} placeholder="Your full name (as assigned to agents)"
-            style={{ width: "100%", background: "rgba(255,255,255,0.07)", border: `1px solid ${trainerError ? "#ef4444" : "rgba(255,255,255,0.12)"}`, borderRadius: 8, padding: "9px 12px", color: "#fff", fontSize: 13, marginBottom: 8, boxSizing: "border-box" }} />
+            style={{ width: "100%", background: "rgba(255,255,255,0.07)", border: `1px solid ${trainerError ? "#ef4444" : "rgba(255,255,255,0.12)"}`, borderRadius: 8, padding: "9px 12px", color: "#fff", fontSize: "var(--fs-13)", marginBottom: 8, boxSizing: "border-box" }} />
           <div style={{ display: "flex", gap: 8 }}>
             <input type="password" value={trainerPin} onChange={e => setTrainerPin(e.target.value)} onKeyDown={e => e.key === "Enter" && handleTrainerLogin()} placeholder="Trainer PIN"
-              style={{ flex: 1, background: "rgba(255,255,255,0.07)", border: `1px solid ${trainerError ? "#ef4444" : "rgba(255,255,255,0.12)"}`, borderRadius: 8, padding: "9px 12px", color: "#fff", fontSize: 13 }} />
-            <button onClick={handleTrainerLogin} style={{ background: "#3B82F6", color: "#fff", border: "none", borderRadius: 8, padding: "9px 18px", fontWeight: 700, cursor: "pointer", fontSize: 13 }}>Enter</button>
+              style={{ flex: 1, background: "rgba(255,255,255,0.07)", border: `1px solid ${trainerError ? "#ef4444" : "rgba(255,255,255,0.12)"}`, borderRadius: 8, padding: "9px 12px", color: "#fff", fontSize: "var(--fs-13)" }} />
+            <button onClick={handleTrainerLogin} style={{ background: "#3B82F6", color: "#fff", border: "none", borderRadius: 8, padding: "9px 18px", fontWeight: 700, cursor: "pointer", fontSize: "var(--fs-13)" }}>Enter</button>
           </div>
-          {trainerError && <div style={{ color: "#ef4444", fontSize: 12, marginTop: 6 }}>Name not found or incorrect PIN</div>}
+          {trainerError && <div style={{ color: "#ef4444", fontSize: "var(--fs-12)", marginTop: 6 }}>Name not found or incorrect PIN</div>}
         </div>
       )}
 
       {loginMode === "agent" && (
         <div style={{ background: "rgba(255,255,255,0.04)", borderRadius: 16, padding: 20, border: "1px solid rgba(255,255,255,0.09)" }}>
-          <div style={{ fontWeight: 700, fontSize: 14, color: "#fff", marginBottom: 3, display: "flex", alignItems: "center", gap: 6 }}>{Ic.user(14, "#fff")} Agent Access</div>
-          <div style={{ fontSize: 12, color: "rgba(255,255,255,0.35)", marginBottom: 12 }}>Enter your name or email to access your training journey</div>
+          <div style={{ fontWeight: 700, fontSize: "var(--fs-14)", color: "#fff", marginBottom: 3, display: "flex", alignItems: "center", gap: 6 }}>{Ic.user(14, "#fff")} Agent Access</div>
+          <div style={{ fontSize: "var(--fs-12)", color: "rgba(255,255,255,0.35)", marginBottom: 12 }}>Enter your name or email to access your training journey</div>
           <div style={{ display: "flex", gap: 8 }}>
             <input value={agentInput} onChange={e => setAgentInput(e.target.value)} onKeyDown={e => e.key === "Enter" && handleAgentLogin()} placeholder="Your name or email"
-              style={{ flex: 1, background: "rgba(255,255,255,0.07)", border: `1px solid ${agentError ? "#ef4444" : "rgba(255,255,255,0.12)"}`, borderRadius: 8, padding: "9px 12px", color: "#fff", fontSize: 13 }} />
-            <button onClick={handleAgentLogin} style={{ background: "rgba(255,255,255,0.1)", color: "#fff", border: "none", borderRadius: 8, padding: "9px 18px", fontWeight: 700, cursor: "pointer", fontSize: 13 }}>Go</button>
+              style={{ flex: 1, background: "rgba(255,255,255,0.07)", border: `1px solid ${agentError ? "#ef4444" : "rgba(255,255,255,0.12)"}`, borderRadius: 8, padding: "9px 12px", color: "#fff", fontSize: "var(--fs-13)" }} />
+            <button onClick={handleAgentLogin} style={{ background: "rgba(255,255,255,0.1)", color: "#fff", border: "none", borderRadius: 8, padding: "9px 18px", fontWeight: 700, cursor: "pointer", fontSize: "var(--fs-13)" }}>Go</button>
           </div>
-          {agentError && <div style={{ color: "#ef4444", fontSize: 12, marginTop: 6 }}>Not found — ask your trainer to add you first</div>}
+          {agentError && <div style={{ color: "#ef4444", fontSize: "var(--fs-12)", marginTop: 6 }}>Not found — ask your trainer to add you first</div>}
         </div>
       )}
     </div>
